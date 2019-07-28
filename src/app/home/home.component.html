@@ -1,0 +1,37 @@
+<!-- Hero image section -->
+<section class="hero-img__container">
+  <div class="hero-wrapper">
+    <h1 class="inspire-text">{{ inspiredText }}</h1>
+    <div class="hero-img" [ngStyle]="{ 'background-image': 'url(' + heroImg + ')' }">
+    </div>
+  </div>
+</section>
+<!-- Secondary header -->
+<section class="secondary-header">
+  <h1 class="header-text">Animal Adoption</h1>
+</section>
+<div class="layout">
+  <!-- Search section -->
+  <section class="search-section">
+    <form formGroup="filterGroup">
+      <h2 class="search-title">搜索條件</h2>
+      <div class="filter-container" formGroupName="conditions">
+        <!-- Filter list -->
+        <div class="filter-wrapper" *ngFor="let filter of filterList;let i = index">
+          <span class="filter-title">{{ filter['type'] }}</span>
+          <filter-select
+            class="filter-select"
+            [options]="filter.options"
+            [ctrl]="filterGroup.get('conditions').get(filter['apiKey'])">
+          </filter-select>
+        </div>
+        <!-- Search buttons -->
+        <div class="search-btn-wrapper">
+          <button (click)="applySearch()" class="search-btn --search" type="button" aria-label="搜索">搜索</button>
+          <button (click)="clearFilter()" class="search-btn --reset" type="button" aria-label="清除條件">清除條件</button>
+          <button class="search-btn --more" type="button" aria-label="更多">更多</button>
+        </div>
+      </div>
+    </form>
+  </section>
+</div>

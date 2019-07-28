@@ -1,0 +1,10 @@
+<div (click)="toggleClass()" class="filter-wrapper" [ngClass]="status">
+  <span class="selected">{{ getDesc(selectedValue) }}</span>
+  <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
+  <!-- <fa-icon [icon]="['fas', 'caret-up']"></fa-icon> -->
+  <div class="filter-menu">
+    <span *ngFor="let option of options"
+          class="option-item"
+          (click)="setValue(option.key)">{{ option.description }}</span>
+  </div>
+</div>

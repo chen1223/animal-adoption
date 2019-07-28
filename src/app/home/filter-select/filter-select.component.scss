@@ -1,0 +1,64 @@
+$borderColor: #ddd;
+$mainColor: #1dd1a1;
+::ng-host {
+  display: block;
+  width: 100%;
+}
+.filter-wrapper {
+  box-sizing: border-box;
+  transform-style: preserve-3d;
+  position: relative;
+  cursor: pointer;
+  .selected,
+  .option-item {
+    display: block;
+    padding: 5px 10px;
+    border: 1px solid $borderColor;
+  }
+  .selected {
+    border-radius: 5px;
+  }
+  .option-item {
+    border-top: none;
+    &:hover {
+      background: #efefef;
+    }
+    &:last-child {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  }
+  .selected {
+    z-index: 2;
+  }
+}
+::ng-deep {
+  .filter-wrapper .fa-caret-down {
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    transition: transform .3s linear;
+    transform-origin: 50% 50%;
+  }
+  .filter-wrapper.expanded .fa-caret-down {
+    transform: rotate(-180deg);
+  }
+}
+.filter-menu {
+  transition: all .3s ease-in;
+  z-index: 1;
+}
+.collapsed .filter-menu {
+  transform: translateY(-50px) translateZ(-2px);
+  opacity: 0;
+}
+.expanded {
+  .filter-menu {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .selected {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
