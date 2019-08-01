@@ -1,9 +1,10 @@
-import { Component, OnInit, forwardRef, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, forwardRef, Input, AfterViewInit, HostBinding } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'filter-select',
   templateUrl: './filter-select.component.html',
+  host: { 'class': 'filter-select' },
   styleUrls: ['./filter-select.component.scss'],
   providers: [
     {
@@ -74,7 +75,6 @@ export class FilterSelectComponent implements OnInit, AfterViewInit, ControlValu
   }
 
   writeValue(value: any): void {
-    console.log('write value', value);
     if (value !== undefined) {
       this.selectedValue = value;
     }

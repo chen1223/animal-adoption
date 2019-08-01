@@ -186,7 +186,7 @@ describe('HomeComponent', () => {
     expect(Object.keys(component.filterGroup.get('conditions').controls).length).toBe(8);
   });
   it('should render filterList on page', () => {
-    expect(fixture.nativeElement.querySelectorAll('filter-select').length).toBe(4);
+    expect(fixture.nativeElement.querySelectorAll('filter-select').length).toBe(8);
   });
   it('should declare "setCondition" function', () => {
     expect(component.setCondition).toBeTruthy();
@@ -208,6 +208,18 @@ describe('HomeComponent', () => {
     resetBtn.click();
     fixture.detectChanges();
     expect(fnc).toHaveBeenCalled();
+  });
+  it('should toggle additional filter list area', () => {
+    let filterArea = <HTMLDivElement> fixture.nativeElement.querySelector('.filter-inner-wrapper.--additional');
+    component.additionalFilter = false;
+    fixture.detectChanges();
+    expect(filterArea.classList).toContain('hidden');
+
+    let moreBtn = <HTMLButtonElement> fixture.nativeElement.querySelector('.search-btn.--more');
+    moreBtn.click();
+    fixture.detectChanges();
+    expect(component.additionalFilter).toBeTruthy();
+    expect(filterArea.classList).not.toContain('hidden');
   });
 
 });

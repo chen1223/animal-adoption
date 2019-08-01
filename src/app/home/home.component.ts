@@ -26,6 +26,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   additionalFilterList: Object[] = [];
 
   filterGroup;
+
+  // Determine status of additional filter: true: visible; false: hidden
+  additionalFilter: boolean = false;
   constructor(private heroService: HeroService,
               private filterService: FilterService,
               private fb: FormBuilder) { }
@@ -98,6 +101,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   // Submit search
   applySearch(): void {
     console.log('filterForm', this.filterGroup, this.filterGroup.value);
+  }
+
+  // Toggle additional filter list area
+  toggleFilter(): void {
+    this.additionalFilter = !this.additionalFilter;
   }
 
   ngOnDestroy() {

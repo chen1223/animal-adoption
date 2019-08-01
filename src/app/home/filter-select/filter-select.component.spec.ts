@@ -25,6 +25,10 @@ describe('FilterSelectComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should have class name "filter-select"', () => {
+    expect(fixture.nativeElement.classList).toContain('filter-select');
+  });
+
   it('should have wrapper', () => {
     expect(fixture.nativeElement.querySelectorAll('.filter-wrapper').length).toBe(1);
   });

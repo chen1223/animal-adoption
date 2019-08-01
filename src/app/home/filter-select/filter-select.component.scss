@@ -37,7 +37,7 @@ $mainColor: #1dd1a1;
     position: absolute;
     top: 8px;
     right: 15px;
-    transition: transform .3s linear;
+    transition: transform .2s linear;
     transform-origin: 50% 50%;
   }
   .filter-wrapper.expanded .fa-caret-down {
@@ -45,8 +45,11 @@ $mainColor: #1dd1a1;
   }
 }
 .filter-menu {
-  transition: all .3s ease-in;
+  background: white;
+  transition: all .2s ease-in;
   z-index: 1;
+  max-height: 180px;
+  overflow-y: auto;
 }
 .collapsed .filter-menu {
   transform: translateY(-50px) translateZ(-2px);
@@ -54,7 +57,7 @@ $mainColor: #1dd1a1;
 }
 .expanded {
   .filter-menu {
-    transform: translateY(0);
+    transform: translateY(0) translateZ(2px);
     opacity: 1;
   }
   .selected {

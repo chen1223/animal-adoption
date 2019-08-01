@@ -10,3 +10,22 @@ body {
   margin: auto;
   max-width: 1500px;
 }
+$btn-red: #ff6f69;
+$btn-red-text: white;
+button {
+  border-radius: 5px;
+  padding: 10px 15px;
+  background: $btn-red;
+  border: none;
+  font-size: 1.2rem;
+  color: $btn-red-text;
+  font-weight: 600;
+  cursor: pointer;
+  min-width: 80px;
+  box-shadow: 2px 2px 2px 1px #aaa;
+  outline: none;
+  &:active {
+    box-shadow: none;
+    transform: translate(2px, 2px);
+  }
+}
