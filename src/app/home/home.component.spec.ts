@@ -171,8 +171,8 @@ describe('HomeComponent', () => {
     component.additionalFilterList = [{ additional: true }];
     component.setUpFilter();
     fixture.detectChanges();
-    expect(component.filterList.length).toBe(4);
-    expect(component.additionalFilterList.length).toBe(4);
+    expect(component.filterList.length).toBe(3);
+    expect(component.additionalFilterList.length).toBe(5);
   });
   it('should declare "addToFilter" function', () => {
     expect(component.addToFilter).toBeTruthy();
@@ -220,6 +220,15 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
     expect(component.additionalFilter).toBeTruthy();
     expect(filterArea.classList).not.toContain('hidden');
+  });
+  it('should toggle search section by clicking search button', () => {
+    let searchIconBtn = <HTMLButtonElement> fixture.nativeElement.querySelector('button.search-icon');
+    let searchContainerEl = <HTMLDivElement> fixture.nativeElement.querySelector('.search-container');
+    searchContainerEl.classList.remove('search-opened');
+    searchContainerEl.classList.add('search-closed');
+    searchIconBtn.click();
+    fixture.detectChanges();
+    expect(searchContainerEl.classList).toContain('search-opened');
   });
 
 });

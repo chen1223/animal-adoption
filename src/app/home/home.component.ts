@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { HeroService } from '../services/hero.service';
 import { FilterService } from '../services/filter.service';
 import { FormBuilder, FormArray, FormControl, FormGroup } from '@angular/forms';
@@ -29,6 +29,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // Determine status of additional filter: true: visible; false: hidden
   additionalFilter: boolean = false;
+
+  // Determine status of the search section in mobile: true: 'search-opened', false: 'search-closed'
+  mobileSearchOpen: boolean = false;
   constructor(private heroService: HeroService,
               private filterService: FilterService,
               private fb: FormBuilder) { }
@@ -53,7 +56,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // On scroll callback event
   onScroll(): void {
-    if (window.pageYOffset >= 470) {
+    const heroContainer = <HTMLDivElement> document.querySelector('.hero-img__container');
+    if (window.pageYOffset >= heroContainer.offsetHeight) {
       document.querySelector('body').classList.add('scroll-passed');
     } else {
       document.querySelector('body').classList.remove('scroll-passed');
@@ -106,6 +110,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   // Toggle additional filter list area
   toggleFilter(): void {
     this.additionalFilter = !this.additionalFilter;
+  }
+
+  // Toggle search drawer on mobile devices
+  toggleDrawer(): void {
+    this.mobileSearchOpen = !this.mobileSearchOpen;
   }
 
   ngOnDestroy() {

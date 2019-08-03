@@ -15,28 +15,35 @@
   <section class="search-section">
     <form formGroup="filterGroup">
       <h2 class="search-title">搜索條件</h2>
-      <div class="search-container" formGroupName="conditions">
+      <div class="search-icon-wrapper">
+        <button class="search-icon" type="button" aria-label="搜索" (click)="toggleDrawer()">
+          <fa-icon [icon]="['fas', 'search']"></fa-icon>
+        </button>
+      </div>
+      <div class="search-container"
+           formGroupName="conditions"
+           [ngClass]="{'search-opened': mobileSearchOpen,
+                      'search-closed': !mobileSearchOpen
+                    }">
         <!-- Filter container-->
-        <div class="filter-container">
-          <div class="filter-inner-wrapper --regular">
-            <!-- Filter list -->
-            <div class="filter-wrapper regular" *ngFor="let filter of filterList;let i = index">
-              <span class="filter-title">{{ filter['type'] }}</span>
-              <filter-select
-                [options]="filter.options"
-                [ctrl]="filterGroup.get('conditions').get(filter['apiKey'])">
-              </filter-select>
-            </div>
+        <div class="filter-inner-wrapper --regular">
+          <!-- Filter list -->
+          <div class="filter-wrapper regular" *ngFor="let filter of filterList;let i = index">
+            <span class="filter-title">{{ filter['type'] }}</span>
+            <filter-select
+              [options]="filter.options"
+              [ctrl]="filterGroup.get('conditions').get(filter['apiKey'])">
+            </filter-select>
           </div>
-          <div class="filter-inner-wrapper --additional" [ngClass]="{'hidden': !additionalFilter}">
-            <!-- Additional filter list -->
-            <div class="filter-wrapper --additional" *ngFor="let filter of additionalFilterList;let i = index">
-              <span class="filter-title">{{ filter['type'] }}</span>
-              <filter-select
-                [options]="filter.options"
-                [ctrl]="filterGroup.get('conditions').get(filter['apiKey'])">
-              </filter-select>
-            </div>
+        </div>
+        <div class="filter-inner-wrapper --additional" [ngClass]="{'hidden': !additionalFilter}">
+          <!-- Additional filter list -->
+          <div class="filter-wrapper --additional" *ngFor="let filter of additionalFilterList;let i = index">
+            <span class="filter-title">{{ filter['type'] }}</span>
+            <filter-select
+              [options]="filter.options"
+              [ctrl]="filterGroup.get('conditions').get(filter['apiKey'])">
+            </filter-select>
           </div>
         </div>
         <!-- Search buttons -->
@@ -50,5 +57,9 @@
         </div>
       </div>
     </form>
+  </section>
+  <!-- Animal listing section -->
+  <section class="animal-section" [ngClass]="{'additional-opened': additionalFilter}">
+    <p>test</p>
   </section>
 </div>

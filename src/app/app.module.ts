@@ -7,7 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { FilterSelectComponent } from './home/filter-select/filter-select.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
   declarations: [
@@ -26,5 +26,6 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 export class AppModule {
   constructor() {
     library.add(faCaretDown);
+    library.add(faSearch);
   }
 }

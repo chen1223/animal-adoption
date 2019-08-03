@@ -69,7 +69,7 @@ export class FilterService {
     {
       type: '年齡',
       apiKey: 'animal_age',
-      additional: false,
+      additional: true,
       options: [
         {
           description: '全部',
