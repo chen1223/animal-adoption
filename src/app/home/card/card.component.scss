@@ -1,0 +1,21 @@
+$bgColor: #efefef;
+.card-container {
+  width: 100%;
+  box-sizing: border-box;
+  background: $bgColor;
+  border-radius: 5px;
+  .img-wrapper {
+    width: 100%;
+  }
+  .detail-wrapper {
+    width: 100%;
+  }
+}
+/*** Animal Section ***/
+.img-wrapper {
+  text-align: center;
+  .main-img {
+    height: 100%;
+    width: auto;
+  }
+}

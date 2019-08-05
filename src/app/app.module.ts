@@ -8,12 +8,14 @@ import { FilterSelectComponent } from './home/filter-select/filter-select.compon
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCaretDown, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { CardComponent } from './home/card/card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    FilterSelectComponent
+    FilterSelectComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

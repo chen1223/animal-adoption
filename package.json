@@ -10,6 +10,12 @@
     "e2e": "ng e2e"
   },
   "private": true,
+  "browserslist": [
+    "> 0.2%",
+    "last 2 version",
+    "ie >=10",
+    "safari >=9"
+  ],
   "dependencies": {
     "@angular/animations": "~7.2.0",
     "@angular/common": "~7.2.0",
