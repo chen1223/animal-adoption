@@ -18,11 +18,6 @@ describe('HeroService', () => {
     httpTestingController.verify();
   });
 
-  it('should be created', () => {
-    const service: HeroService = TestBed.get(HeroService);
-    expect(service).toBeTruthy();
-  });
-
   // Random API
   it('should select an hero from the array', () => {
     expect(service.getHero()).toBeTruthy();

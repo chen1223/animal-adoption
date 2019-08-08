@@ -1,15 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardComponent } from './card.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-fdescribe('CardComponent', () => {
+describe('CardComponent', () => {
   let component: CardComponent;
   let fixture: ComponentFixture<CardComponent>;
   let dummyData;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CardComponent ]
+      declarations: [ CardComponent ],
+      imports: [FontAwesomeModule]
     })
     .compileComponents();
   }));
@@ -20,7 +22,9 @@ fdescribe('CardComponent', () => {
     dummyData = {
       album_file: 'https://via.placeholder.com/300/300',
       animal_kind: '狗',
-      animal_id: '12345'
+      animal_id: '12345',
+      animal_sex: 'M',
+      animal_bodytype: 'MEDIUM'
     };
     component.data = dummyData;
     fixture.detectChanges();
@@ -77,6 +81,13 @@ fdescribe('CardComponent', () => {
   it('should have main image', () => {
     let mainImg = fixture.nativeElement.querySelectorAll('.img-wrapper .main-img');
     expect(mainImg.length).toBe(1);
+  });
+
+  /**
+   * Detail section
+   */
+  it('should render gender', () => {
+
   });
 
 });

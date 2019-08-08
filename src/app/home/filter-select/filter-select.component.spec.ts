@@ -20,11 +20,6 @@ describe('FilterSelectComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should have class name "filter-select"', () => {
     expect(fixture.nativeElement.classList).toContain('filter-select');
   });

@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { HeroService } from '../services/hero.service';
 import { FilterService } from '../services/filter.service';
 import { FormBuilder, FormArray, FormControl, FormGroup } from '@angular/forms';
+import { AnimalService } from '../services/animal.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -32,6 +34,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // Determine status of the search section in mobile: true: 'search-opened', false: 'search-closed'
   mobileSearchOpen: boolean = false;
+
+  // Animals array that hold data of all animals obtained from API
+  animalPools: Object[] = [];
+  // Animals array that hold data of all animals currently shown to user
+  animalShowing: Object[] = [];
 
   // TODO: Remove
   dataTodo = {
@@ -66,6 +73,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(private heroService: HeroService,
               private filterService: FilterService,
+              private animalService: AnimalService,
               private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -73,6 +81,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.setInspiredText();
     this.setUpFilter();
     window.addEventListener('scroll', this.onScroll, true);
+    this.getAnimals();
   }
 
   // Get hero image
@@ -147,6 +156,36 @@ export class HomeComponent implements OnInit, OnDestroy {
   // Toggle search drawer on mobile devices
   toggleDrawer(): void {
     this.mobileSearchOpen = !this.mobileSearchOpen;
+  }
+
+  // Get animals
+  getAnimals(skip: number = 0, top: number = 0): void {
+    this.animalPools = [];
+    this.animalService.getAnimals(skip, top)
+        .pipe(
+          map((dataset: Object[]) => {
+            dataset.forEach(data => {
+              // Map city
+              data['city'] = this.animalService.getCity(data['animal_area_pkid']);
+              // Map shelter
+              data['shelter'] = this.animalService.getShelter(data['animal_shelter_pkid']);
+              // Map body size
+              data['size'] = this.animalService.getSize(data['animal_bodytype']);
+              // Store gender to a separate variable
+              data['gender'] = data['animal_sex'];
+            });
+            return dataset;
+          })
+        )
+        .subscribe(
+          (data: any) => {
+            this.animalPools = [...data];
+            //TODO: Replace with actual implementation
+            this.animalShowing = [...data];
+            console.log('animal data', data);
+          },
+          err => {}
+        );
   }
 
   ngOnDestroy() {

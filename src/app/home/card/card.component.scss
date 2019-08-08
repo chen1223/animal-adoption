@@ -4,18 +4,40 @@ $bgColor: #efefef;
   box-sizing: border-box;
   background: $bgColor;
   border-radius: 5px;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, .5);
   .img-wrapper {
     width: 100%;
   }
   .detail-wrapper {
     width: 100%;
+    margin-top: 20px;
   }
 }
-/*** Animal Section ***/
+/*** Image Section ***/
 .img-wrapper {
   text-align: center;
   .main-img {
     height: 100%;
     width: auto;
+  }
+}
+/*** Detail Section ***/
+// Main Detail
+.detail-wrapper {
+  .detail-row {
+    display: flex;
+    width: 70%;
+    margin: auto;
+    margin-bottom: 5px;
+    justify-content: space-between;
+    .detail-text {
+      width: 40%;
+    }
+    .detail-text.--detail {
+      text-align: center;
+    }
+    .detail-text.--gender {
+      font-size: 1.2rem;
+    }
   }
 }

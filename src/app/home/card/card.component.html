@@ -4,5 +4,25 @@
     <img class="main-img" [src]="data['album_file']" [alt]="data['animal_kind'] + ': ' + data['animal_id']">
   </div>
   <!-- Detail Section -->
-  <div class="detail-wrapper"></div>
+  <div class="detail-wrapper">
+    <!-- Gender -->
+    <div class="detail-row --gender">
+      <span class="detail-text --title">性別</span>
+      <ng-container [ngSwitch]="data['gender']">
+        <fa-icon class="detail-text --detail --gender" *ngSwitchCase="'N'" [icon]="['fas', 'question']"></fa-icon>
+        <fa-icon class="detail-text --detail --gender" *ngSwitchCase="'M'" [icon]="['fas', 'mars']"></fa-icon>
+        <fa-icon class="detail-text --detail --gender" *ngSwitchCase="'F'" [icon]="['fas', 'venus']"></fa-icon>
+      </ng-container>
+    </div>
+    <!-- Size -->
+    <div class="detail-row --size">
+      <span class="detail-text --title">體型</span>
+      <span class="detail-text --detail">{{ data['size'] }}</span>
+    </div>
+    <!-- Location -->
+    <div class="detail-row --location">
+      <span class="detail-text --title">所在地</span>
+      <span class="detail-text --detail">{{ data['city'] }}</span>
+    </div>
+  </div><!-- End of Detail Section -->
 </div>

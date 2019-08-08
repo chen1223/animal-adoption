@@ -8,11 +8,13 @@ import { FormBuilder, FormArray } from '@angular/forms';
 import { FilterService } from '../services/filter.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { AnimalService } from '../services/animal.service';
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
   let heroService: HeroService;
   let filterService: FilterService;
+  let animalService: AnimalService;
   let fb: FormBuilder;
 
   beforeEach(async(() => {
@@ -22,10 +24,12 @@ describe('HomeComponent', () => {
       schemas: [ NO_ERRORS_SCHEMA ],
       providers: [HeroService,
                   FilterService,
+                  AnimalService,
                   FormBuilder]
     }).compileComponents();
     heroService = TestBed.get(HeroService);
     filterService = TestBed.get(FilterService);
+    animalService = TestBed.get(AnimalService);
     fb = TestBed.get(FormBuilder);
   }));
 
@@ -33,10 +37,6 @@ describe('HomeComponent', () => {
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 
   /**
@@ -229,6 +229,88 @@ describe('HomeComponent', () => {
     searchIconBtn.click();
     fixture.detectChanges();
     expect(searchContainerEl.classList).toContain('search-opened');
+  });
+
+  // Animal API Testing
+  it('should call getAnimals on ngInit', () => {
+    let fnc = spyOn(component, 'getAnimals');
+    component.ngOnInit();
+    expect(fnc).toHaveBeenCalled();
+  });
+  it('should have a variable called animalPools to hold all animal data', () => {
+    expect(component.animalPools).toBeTruthy();
+  });
+  it('should make API call by calling the getAnimals function', () => {
+    let apiFnc = spyOn(animalService, 'getAnimals').and.returnValue(of([{
+      dummy: 'test2'
+    }]));
+    component.getAnimals();
+    expect(apiFnc).toHaveBeenCalled();
+  });
+  it('should clear animal pools before calling the getAnimals function', () => {
+    component.animalPools = [{ dummy: 'test' }];
+    spyOn(animalService, 'getAnimals').and.returnValue(of([
+      {
+        dummy: 'test2'
+      }
+    ]));
+    component.getAnimals();
+    fixture.detectChanges();
+    expect(component.animalPools.length).toBe(1);
+  });
+  it('should have a variable called animalShowing to hold animal data currently shown to the user', () => {
+    expect(component.animalShowing).toBeTruthy();
+  });
+  it('should render correct number of cards on screen', () => {
+    const dummyData = [{ dummy: 'test' }, { dummy: 'test 2' }];
+    component.animalShowing = dummyData;
+    fixture.detectChanges();
+    let cardElments = fixture.nativeElement.querySelectorAll('animal-card');
+    expect(cardElments.length).toBe(dummyData.length);
+  });
+  it('should map animal city for incoming animal API data', () => {
+    const dummyData = [{
+      animal_area_pkid: 11
+    }];
+    spyOn(animalService, 'getAnimals').and.returnValue(of(dummyData));
+    component.getAnimals();
+    fixture.detectChanges();
+    let firstEntry = component.animalShowing[0];
+    expect(firstEntry['city']).toBeTruthy();
+    expect(firstEntry['city']).toBe(animalService.getCity(dummyData[0]['animal_area_pkid']));
+  });
+  it('should map animal shelter location for incoming animal API data', () => {
+    const dummyData = [{
+      "animal_shelter_pkid": 69
+    }];
+    spyOn(animalService, 'getAnimals').and.returnValue(of(dummyData));
+    component.getAnimals();
+    fixture.detectChanges();
+    let firstEntry = component.animalShowing[0];
+    expect(firstEntry['shelter']).toBeTruthy();
+    expect(firstEntry['shelter']).toBe(animalService.getShelter(dummyData[0]['animal_shelter_pkid']));
+  });
+  it('should map animal body size for incoming animal API data', () => {
+    const dummyData = [{
+      "animal_bodytype": 'BIG'
+    }];
+    spyOn(animalService, 'getAnimals').and.returnValue(of(dummyData));
+    component.getAnimals();
+    fixture.detectChanges();
+    let firstEntry = component.animalShowing[0];
+    expect(firstEntry['size']).toBeTruthy();
+    expect(firstEntry['size']).toBe(animalService.getSize(dummyData[0]['animal_bodytype']));
+  });
+  it('should store animal_sex to a variable called gender', () => {
+    const dummyData = [{
+      "animal_sex": 'M'
+    }];
+    spyOn(animalService, 'getAnimals').and.returnValue(of(dummyData));
+    component.getAnimals();
+    fixture.detectChanges();
+    let firstEntry = component.animalShowing[0];
+    expect(firstEntry['gender']).toBeTruthy();
+    expect(firstEntry['gender']).toBe(dummyData[0]['animal_sex']);
   });
 
 });
