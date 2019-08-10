@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardComponent } from './card.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('CardComponent', () => {
   let component: CardComponent;
@@ -11,7 +12,7 @@ describe('CardComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CardComponent ],
-      imports: [FontAwesomeModule]
+      imports: [FontAwesomeModule, RouterTestingModule]
     })
     .compileComponents();
   }));
@@ -26,8 +27,15 @@ describe('CardComponent', () => {
       animal_sex: 'M',
       animal_bodytype: 'MEDIUM'
     };
+    localStorage.clear();
+    sessionStorage.clear();
     component.data = dummyData;
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    localStorage.clear();
+    sessionStorage.clear();
   });
 
   /**
@@ -83,9 +91,13 @@ describe('CardComponent', () => {
     expect(mainImg.length).toBe(1);
   });
 
-  /**
-   * Detail section
-   */
-
+  it('should store item on browser on click', () => {
+    let link = fixture.nativeElement.querySelector('.link-wrapper');
+    link.click();
+    let localStorageItem = localStorage.getItem('selectedAnimal');
+    let sessionStorageItem = sessionStorage.getItem('selectedAnimal');
+    expect(localStorageItem).toBeTruthy();
+    expect(sessionStorageItem).toBeTruthy();
+  });
 
 });

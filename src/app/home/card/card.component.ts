@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, AfterViewInit, ElementRef, NgZone, OnDestroy } from '@angular/core';
 import { take } from 'rxjs/internal/operators/take';
+import { AnimalService } from '../../services/animal.service';
 
 @Component({
   selector: 'animal-card',
@@ -16,7 +17,8 @@ export class CardComponent implements OnInit, AfterViewInit, OnDestroy {
   imgPortion = 1.15;
   @Input() data: Object;
 
-  constructor(private elementRef: ElementRef) { }
+  constructor(private elementRef: ElementRef,
+              private animalService: AnimalService) { }
 
   ngOnInit() {
     window.addEventListener('orientationchange', this.redraw);
@@ -36,11 +38,17 @@ export class CardComponent implements OnInit, AfterViewInit, OnDestroy {
     imgContainer.style.height = `${imgHeight}px`;
   }
 
+  // Store data in localStorage and sessionStorage on click
+  storeData(): void {
+    this.animalService.storeAnimal(this.data);
+  }
+
   redraw = () => {
     setTimeout(() => {
       this.renderCard();
     }, 200);
   }
+
   ngAfterViewInit() {
     this.renderCard();
   }

@@ -1,0 +1,295 @@
+$heroBg: #1dd1a1;
+/*** Header section ***/
+.header {
+  padding: 15px 10px;
+  background: $heroBg;
+  z-index: 1000;
+  .header-text {
+    display: block;
+    width: 80%;
+    margin: auto;
+    color: white;
+  }
+}
+/*** Navigation section ***/
+.navigation-btn {
+  text-decoration: none;
+  font-size: 2.5rem;
+  color: black;
+  .hidden-icon.--left {
+    margin-right: 3px;
+    font-size: 2rem;
+  }
+}
+/*** Profile section ***/
+.profile-wrapper {
+  .inner-profile-wrapper {
+    width: 70%;
+    margin: auto;
+    text-align: center;
+    height: 300px;
+    background: #dfdfdf;
+    border-radius: 10px;
+    max-width: 500px;
+    .profile-img {
+      height: 100%;
+      width: auto;
+    }
+  }
+}
+/*** Detail section ***/
+.detail-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 80%;
+  margin: auto;
+  margin-top: 30px;
+  .detail-wrapper {
+    width: calc(50% - 20px);
+    display: flex;
+    margin-bottom: 10px;
+  }
+}
+.detail-title {
+  font-weight: 600;
+  font-size: 1.2rem;
+  width: 120px;
+  flex: 2;
+}
+.detail {
+  font-size: 18px;
+  flex: 4;
+}
+/*** Remark section ***/
+.remark-section {
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+  .detail-title {
+    margin-bottom: 5px;
+    display: block;
+  }
+  .detail {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+}
+/*--------- Landscape Devices ---------*/
+/***** LG Devices *****/
+@media (min-width: 1200px) and (orientation: landscape){
+
+}
+/***** MD Devices*****/
+@media (min-width: 993px) and (max-width: 1199px) and (orientation: landscape){
+  .detail-section,
+  .remark-section {
+    width: 100%;
+  }
+}
+/***** SM Devices *****/
+@media (min-width: 768px) and (max-width: 992px) and (orientation: landscape){
+  .header {
+    .header-text {
+      width: 90%;
+    }
+  }
+  .profile-wrapper {
+    .inner-profile-wrapper {
+      height: 250px;
+    }
+  }
+  .detail-section,
+  .remark-section {
+    width: 100%;
+  }
+  .detail-title,
+  .detail {
+    font-size: 16px;
+  }
+  .remark-section {
+    margin-top: 10px;
+  }
+}
+/***** XS Devices *****/
+@media (min-width: 480px) and (max-width: 767px) and (orientation: landscape){
+  .navigation-wrapper {
+    width: 80%;
+    margin: auto;
+  }
+  .profile-wrapper {
+    .inner-profile-wrapper {
+      height: 200px;
+    }
+  }
+  .detail-section,
+  .remark-section {
+    width: 80%;
+  }
+  .detail-section {
+    display: block;
+    .detail-wrapper {
+      margin: auto;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+  }
+  .detail-title,
+  .detail {
+    font-size: 16px;
+  }
+  .detail-title {
+    flex: 3;
+  }
+}
+/***** XXS Devices *****/
+@media (max-width: 479px) and (orientation: landscape){
+  .header .header-text {
+    width: 90%;
+  }
+  .navigation-wrapper {
+    width: 90%;
+    margin: auto;
+    .navigation-btn {
+      font-size: 2rem;
+      .hidden-icon.--left {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  .profile-wrapper {
+    .inner-profile-wrapper {
+      height: 200px;
+      width: 100%;
+    }
+  }
+  .detail-section,
+  .remark-section {
+    width: 90%;
+  }
+  .detail-section {
+    display: block;
+    .detail-wrapper {
+      margin: auto;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+  }
+  .detail-title,
+  .detail {
+    font-size: 16px;
+  }
+  .detail-title {
+    flex: 3;
+  }
+}
+/*--------- Portrait Devices ---------*/
+/***** LG Devices *****/
+@media (min-width: 1200px) and (orientation: portrait){
+
+}
+/***** MD Devices*****/
+@media (min-width: 993px) and (max-width: 1199px) and (orientation: portrait){
+
+}
+/***** SM Devices *****/
+@media (min-width: 768px) and (max-width: 992px) and (orientation: portrait){
+  .header {
+    .header-text {
+      width: 90%;
+    }
+  }
+  .profile-wrapper {
+    .inner-profile-wrapper {
+      height: 250px;
+    }
+  }
+  .detail-section,
+  .remark-section {
+    width: 100%;
+  }
+  .detail-title,
+  .detail {
+    font-size: 16px;
+  }
+  .remark-section {
+    margin-top: 10px;
+  }
+
+}
+/***** XS Devices *****/
+@media (min-width: 480px) and (max-width: 767px) and (orientation: portrait){
+  .navigation-wrapper {
+    width: 80%;
+    margin: auto;
+  }
+  .profile-wrapper {
+    .inner-profile-wrapper {
+      height: 200px;
+    }
+  }
+  .detail-section,
+  .remark-section {
+    width: 80%;
+  }
+  .detail-section {
+    display: block;
+    .detail-wrapper {
+      margin: auto;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+  }
+  .detail-title,
+  .detail {
+    font-size: 16px;
+  }
+  .detail-title {
+    flex: 3;
+  }
+}
+/***** XXS Devices *****/
+@media (max-width: 479px) and (orientation: portrait){
+  .header .header-text {
+    width: 90%;
+  }
+  .navigation-wrapper {
+    width: 90%;
+    margin: auto;
+    .navigation-btn {
+      font-size: 2rem;
+      .hidden-icon.--left {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  .profile-wrapper {
+    .inner-profile-wrapper {
+      height: 200px;
+      width: 100%;
+    }
+  }
+  .detail-section,
+  .remark-section {
+    width: 90%;
+  }
+  .remark-section {
+    margin-top: 30px;
+  }
+  .detail-section {
+    display: block;
+    .detail-wrapper {
+      margin: auto;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+  }
+  .detail-title,
+  .detail {
+    font-size: 16px;
+  }
+  .detail-title {
+    flex: 3;
+  }
+
+}

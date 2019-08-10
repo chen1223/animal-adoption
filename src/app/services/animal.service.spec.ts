@@ -11,6 +11,11 @@ describe('AnimalService', () => {
     animalService = TestBed.get(AnimalService);
   });
 
+  afterEach(() => {
+    localStorage.clear();
+    sessionStorage.clear();
+  });
+
   // City related testing
   it('should have a city mapping dictionary', () => {
     expect(animalService.cityDict).toBeTruthy();
@@ -39,6 +44,22 @@ describe('AnimalService', () => {
     Object.keys(animalService.sizeDict).forEach(key => {
       expect(animalService.getSize(key)).toBe(animalService.sizeDict[key]);
     });
+  });
+
+  it('should store animal data in localStorage and sessionStorage', () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    animalService.storeAnimal({ test: 'test' });
+    let localData = localStorage.getItem('selectedAnimal');
+    let sessionData = sessionStorage.getItem('selectedAnimal');
+    expect(localData).toBeTruthy();
+    expect(sessionData).toBeTruthy();
+  });
+  it('should get data from sessionStorage', () => {
+    const dummyData = { test: 'test' };
+    sessionStorage.setItem('selectedAnimal', JSON.stringify(dummyData));
+    let dataRetrieved = animalService.loadAnimal();
+    expect(dataRetrieved['test']).toBe(dummyData['test']);
   });
 
   // Animal API testing

@@ -1,50 +1,52 @@
-<div class="card-container">
-  <!-- Image Section -->
-  <div class="img-wrapper">
-    <img class="main-img" [src]="data['album_file']" [alt]="data['animal_kind'] + ': ' + data['animal_id']" loading="lazy">
-  </div><!-- End of image section -->
-  <!-- Detail Section -->
-  <div class="detail-wrapper">
-    <!-- Gender -->
-    <div class="detail-row --gender">
-      <span class="detail-text --title">性別</span>
-      <ng-container [ngSwitch]="data['gender']">
-        <fa-icon class="detail-text --detail --gender" *ngSwitchCase="'N'" [icon]="['fas', 'question']"></fa-icon>
-        <fa-icon class="detail-text --detail --gender" *ngSwitchCase="'M'" [icon]="['fas', 'mars']"></fa-icon>
-        <fa-icon class="detail-text --detail --gender" *ngSwitchCase="'F'" [icon]="['fas', 'venus']"></fa-icon>
-      </ng-container>
-    </div>
-    <!-- Size -->
-    <div class="detail-row --size">
-      <span class="detail-text --title">體型</span>
-      <span class="detail-text --detail">{{ data['size'] }}</span>
-    </div>
-    <!-- Location -->
-    <div class="detail-row --location">
-      <span class="detail-text --title">所在地</span>
-      <span class="detail-text --detail">{{ data['city'] }}</span>
-    </div>
-  </div><!-- End of Detail Section -->
-  <!-- Hidden Section -->
-  <div class="hidden-wrapper">
-    <div class="round-img-wrapper">
-      <div class="inner-round-img-wrapper">
-        <img class="round-img" [src]="data['album_file']" [alt]="data['animal_kind'] + ': ' + data['animal_id']" loading="lazy">
+<a class="link-wrapper" [routerLink]="['/animal', data?.animal_id]" (click)="storeData()">
+  <div class="card-container">
+    <!-- Image Section -->
+    <div class="img-wrapper">
+      <img class="main-img" [src]="data['album_file']" [alt]="data['animal_kind'] + ': ' + data['animal_id']" loading="lazy">
+    </div><!-- End of image section -->
+    <!-- Detail Section -->
+    <div class="detail-wrapper">
+      <!-- Gender -->
+      <div class="detail-row --gender">
+        <span class="detail-text --title">性別</span>
+        <ng-container [ngSwitch]="data['gender']">
+          <fa-icon class="detail-text --detail --gender" *ngSwitchCase="'N'" [icon]="['fas', 'question']"></fa-icon>
+          <fa-icon class="detail-text --detail --gender" *ngSwitchCase="'M'" [icon]="['fas', 'mars']"></fa-icon>
+          <fa-icon class="detail-text --detail --gender" *ngSwitchCase="'F'" [icon]="['fas', 'venus']"></fa-icon>
+        </ng-container>
       </div>
-    </div>
-    <!-- Hidden details -->
-    <div class="hidden-detail-wrapper">
-      <span class="shelter">{{ data['animal_place'] }}</span>
-      <!-- Address -->
-      <div class="hidden-row --address">
-        <fa-icon class="hidden-icon"[icon]="['fas', 'home']"></fa-icon>
-        <span class="hidden-detail">{{ data['shelter_address'] }}</span>
+      <!-- Size -->
+      <div class="detail-row --size">
+        <span class="detail-text --title">體型</span>
+        <span class="detail-text --detail">{{ data['size'] }}</span>
       </div>
-      <!-- Telephone -->
-      <div class="hidden-row --phone">
-        <fa-icon class="hidden-icon"[icon]="['fas', 'phone-alt']"></fa-icon>
-        <span class="hidden-detail">{{ data['shelter_tel'] }}</span>
+      <!-- Location -->
+      <div class="detail-row --location">
+        <span class="detail-text --title">所在地</span>
+        <span class="detail-text --detail">{{ data['city'] }}</span>
       </div>
-    </div>
-  </div><!-- End of Hidden section -->
-</div>
+    </div><!-- End of Detail Section -->
+    <!-- Hidden Section -->
+    <div class="hidden-wrapper">
+      <div class="round-img-wrapper">
+        <div class="inner-round-img-wrapper">
+          <img class="round-img" [src]="data['album_file']" [alt]="data['animal_kind'] + ': ' + data['animal_id']" loading="lazy">
+        </div>
+      </div>
+      <!-- Hidden details -->
+      <div class="hidden-detail-wrapper">
+        <span class="shelter">{{ data['animal_place'] }}</span>
+        <!-- Address -->
+        <div class="hidden-row --address">
+          <fa-icon class="hidden-icon"[icon]="['fas', 'home']"></fa-icon>
+          <span class="hidden-detail">{{ data['shelter_address'] }}</span>
+        </div>
+        <!-- Telephone -->
+        <div class="hidden-row --phone">
+          <fa-icon class="hidden-icon"[icon]="['fas', 'phone-alt']"></fa-icon>
+          <span class="hidden-detail">{{ data['shelter_tel'] }}</span>
+        </div>
+      </div>
+    </div><!-- End of Hidden section -->
+  </div>
+</a>

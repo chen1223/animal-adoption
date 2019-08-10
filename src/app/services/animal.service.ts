@@ -306,4 +306,16 @@ export class AnimalService {
       }, 0);
     });
   }
+
+  // Store given data to localStorage and sessionStorage
+  storeAnimal(data): void {
+    localStorage.setItem('selectedAnimal', JSON.stringify(data));
+    sessionStorage.setItem('selectedAnimal', JSON.stringify(data));
+  }
+
+  // Load data from sessionStorage
+  loadAnimal(): Object {
+    const data = sessionStorage.getItem('selectedAnimal');
+    return data ? JSON.parse(data) : null;
+  }
 }

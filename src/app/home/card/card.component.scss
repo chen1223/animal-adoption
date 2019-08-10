@@ -1,5 +1,10 @@
 $bgColor: #fdfdfd;
+.link-wrapper {
+  text-decoration: none;
+  color: black;
+}
 .card-container {
+  display: block;
   width: 100%;
   box-sizing: border-box;
   background: $bgColor;

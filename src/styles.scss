@@ -2,6 +2,22 @@
 body {
   margin: 0;
   font-family: 'Noto Sans TC', sans-serif;
+  position: relative;
+  &.show {
+    min-height: 100vh;
+    &::after {
+      background: url(/assets/img/footprints.png);
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      content: '';
+      z-index: -1;
+      background-size: 25%;
+      opacity: .2;
+    }
+  }
 }
 .layout {
   padding: 10px;
@@ -46,7 +62,9 @@ img {
 }
 /***** SM Devices *****/
 @media (min-width: 768px) and (max-width: 992px) and (orientation: landscape){
-
+  .layout {
+    width: 90%;
+  }
 }
 /***** XS Devices *****/
 @media (min-width: 480px) and (max-width: 767px) and (orientation: landscape){
@@ -54,12 +72,22 @@ img {
     width: 100%;
     padding: 10px 0px;
   }
+  body.show {
+    &::after {
+      background-size: 40%;
+    }
+  }
 }
 /***** XXS Devices *****/
 @media (max-width: 479px) and (orientation: landscape){
   .layout {
     width: 100%;
     padding: 10px 0;
+  }
+  body.show {
+    &::after {
+      background-size: 40%;
+    }
   }
 }
 /*--------- Portrait Devices ---------*/

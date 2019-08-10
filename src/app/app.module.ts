@@ -7,7 +7,14 @@ import { HomeComponent } from './home/home.component';
 import { FilterSelectComponent } from './home/filter-select/filter-select.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCaretDown, faSearch, faMars, faVenus, faQuestion, faHome, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown,
+         faSearch,
+         faMars,
+         faVenus,
+         faQuestion,
+         faHome,
+         faPhoneAlt,
+         faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { CardComponent } from './home/card/card.component';
 import { ProfileComponent } from './profile/profile.component';
 
@@ -36,5 +43,6 @@ export class AppModule {
     library.add(faQuestion);
     library.add(faHome);
     library.add(faPhoneAlt);
+    library.add(faAngleLeft);
   }
 }

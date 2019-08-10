@@ -193,6 +193,11 @@ $borderColor: #ddd;
       }
     }
   }
+  .secondary-header {
+    .header-text{
+      width: 90%;
+    }
+  }
   ::ng-deep {
     .scroll-passed .layout {
       margin-top: 40px;
