@@ -12,7 +12,10 @@
 </section>
 <div class="layout">
   <!-- Search section -->
-  <section class="search-section">
+  <section class="search-section"
+          [ngClass]="{'search-opened': mobileSearchOpen,
+                    'search-closed': !mobileSearchOpen
+                  }">
     <form formGroup="filterGroup">
       <h2 class="search-title">搜索條件</h2>
       <div class="search-icon-wrapper">

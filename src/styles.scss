@@ -33,6 +33,7 @@ button {
 img {
   user-select: none;
   -webkit-user-drag: none;
+  pointer-events: none;
 }
 /*--------- Landscape Devices ---------*/
 /***** LG Devices *****/

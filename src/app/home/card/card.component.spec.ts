@@ -86,8 +86,6 @@ describe('CardComponent', () => {
   /**
    * Detail section
    */
-  it('should render gender', () => {
 
-  });
 
 });

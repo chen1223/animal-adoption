@@ -156,6 +156,7 @@ $mainColor: #1dd1a1;
 @media (max-width: 479px) and (orientation: portrait){
   .filter-wrapper {
     border: 1px solid $borderColor;
+    height: 40px;
     .selected {
       border-radius: 0 !important;
       border: none;
@@ -164,7 +165,7 @@ $mainColor: #1dd1a1;
     }
   }
   .filter-menu {
-    transition: all .2s linear;
+    transition: all .2s ease-in-out;
     border-radius: 0 !important;
     background: #efefef;
   }

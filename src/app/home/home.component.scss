@@ -1,5 +1,6 @@
 .layout {
   transform-style: preserve-3d;
+  overflow-x: hidden;
 }
 /*** Hero image section ***/
 $heroBg: #1dd1a1;
@@ -131,10 +132,13 @@ $borderColor: #ddd;
 .animal-section {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  position: relative;
+  margin-left: -10px;
+  margin-right: -10px;
   .animal-card {
     width: calc(25% - 20px);
     z-index: 5;
+    margin: 15px 10px;
   }
 }
 /*--------- Landscape Devices ---------*/
@@ -142,7 +146,7 @@ $borderColor: #ddd;
 @media (min-width: 1200px) and (orientation: landscape){
   /*** Animal Section ***/
   .animal-section {
-    margin-top: -120px;
+    margin-top: -100px;
     &.additional-opened {
       margin-top: 0;
     }
@@ -165,9 +169,12 @@ $borderColor: #ddd;
   }
   /*** Animal Section ***/
   .animal-section {
-    margin-top: -120px;
+    margin-top: -100px;
     &.additional-opened {
       margin-top: 0;
+    }
+    .animal-card {
+      width: calc(33% - 20px);
     }
   }
 }
@@ -226,9 +233,12 @@ $borderColor: #ddd;
   }
   /*** Animal Section ***/
   .animal-section {
-    margin-top: -120px;
+    margin-top: -100px;
     &.additional-opened {
       margin-top: 0;
+    }
+    .animal-card {
+      width: calc(33% - 20px);
     }
   }
 }
@@ -275,6 +285,9 @@ $borderColor: #ddd;
     z-index: 2;
     position: absolute;
     width: 100%;
+    &.search-opened {
+      z-index: 10;
+    }
   }
   .search-container {
     transition: transform .3s ease-in-out;
@@ -349,6 +362,9 @@ $borderColor: #ddd;
   /*** Animal list ***/
   .animal-section {
     margin-top: 50px;
+    .animal-card {
+      width: calc(50% - 20px);
+    }
   }
 }
 /***** XXS Devices *****/
@@ -394,6 +410,9 @@ $borderColor: #ddd;
     z-index: 2;
     position: absolute;
     width: 100%;
+    &.search-opened {
+      z-index: 10;
+    }
   }
   .search-container {
     transition: transform .3s ease-in-out;
@@ -468,6 +487,9 @@ $borderColor: #ddd;
   /*** Animal list ***/
   .animal-section {
     margin-top: 50px;
+    .animal-card {
+      width: 100%;
+    }
   }
 }
 /*--------- Portrait Devices ---------*/
@@ -475,7 +497,7 @@ $borderColor: #ddd;
 @media (min-width: 1200px) and (orientation: portrait){
   /*** Animal Section ***/
   .animal-section {
-    margin-top: -120px;
+    margin-top: -100px;
     &.additional-opened {
       margin-top: 0;
     }
@@ -499,6 +521,9 @@ $borderColor: #ddd;
     margin-top: -120px;
     &.additional-opened {
       margin-top: 0;
+    }
+    .animal-card {
+      width: calc(33% - 20px);
     }
   }
 }
@@ -552,6 +577,9 @@ $borderColor: #ddd;
     &.additional-opened {
       margin-top: 0;
     }
+    .animal-card {
+      width: calc(33% - 20px);
+    }
   }
 }
 /***** XS Devices *****/
@@ -597,6 +625,9 @@ $borderColor: #ddd;
     z-index: 2;
     position: absolute;
     width: 100%;
+    &.search-opened {
+      z-index: 10;
+    }
   }
   .search-container {
     transition: transform .3s ease-in-out;
@@ -671,6 +702,9 @@ $borderColor: #ddd;
   /*** Animal list ***/
   .animal-section {
     margin-top: 50px;
+    .animal-card {
+      width: calc(50% - 20px);
+    }
   }
 }
 /***** XXS Devices *****/
@@ -716,6 +750,9 @@ $borderColor: #ddd;
     z-index: 2;
     position: absolute;
     width: 100%;
+    &.search-opened {
+      z-index: 10;
+    }
   }
   .search-container {
     transition: transform .3s ease-in-out;
@@ -790,5 +827,9 @@ $borderColor: #ddd;
   /*** Animal list ***/
   .animal-section {
     margin-top: 50px;
+    .animal-card {
+      width: calc(50% - 10px);
+      margin: 10px 5px;
+    }
   }
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, ElementRef, NgZone, OnDestroy } from '@angular/core';
+import { take } from 'rxjs/internal/operators/take';
 
 @Component({
   selector: 'animal-card',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input, AfterViewInit, ElementRef } from '@angular/co
   host: { 'class': 'animal-card' },
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent implements OnInit, AfterViewInit {
+export class CardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Card W : H portion
   cardPortion = 0.75;
@@ -18,6 +19,8 @@ export class CardComponent implements OnInit, AfterViewInit {
   constructor(private elementRef: ElementRef) { }
 
   ngOnInit() {
+    window.addEventListener('orientationchange', this.redraw);
+    window.addEventListener('resize', this.redraw)
   }
 
   // Render card width & height according to predefined portion
@@ -33,8 +36,19 @@ export class CardComponent implements OnInit, AfterViewInit {
     imgContainer.style.height = `${imgHeight}px`;
   }
 
+  redraw = () => {
+    setTimeout(() => {
+      this.renderCard();
+    }, 200);
+  }
   ngAfterViewInit() {
     this.renderCard();
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('orientationchange', this.redraw);
+    window.removeEventListener('resize', this.redraw);
+
   }
 
 }

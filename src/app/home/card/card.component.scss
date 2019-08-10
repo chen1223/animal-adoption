@@ -1,16 +1,36 @@
-$bgColor: #efefef;
+$bgColor: #fdfdfd;
 .card-container {
   width: 100%;
   box-sizing: border-box;
   background: $bgColor;
   border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
   box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, .5);
+  &:hover,
+  &:focus {
+    .hidden-wrapper {
+      transform: translateY(0);
+    }
+  }
   .img-wrapper {
     width: 100%;
   }
   .detail-wrapper {
     width: 100%;
     margin-top: 20px;
+  }
+  .hidden-wrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: $bgColor;
+    z-index: 3;
+    transform: translateY(100%);
+    transition: transform .4s ease-in-out;
   }
 }
 /*** Image Section ***/
@@ -35,6 +55,189 @@ $bgColor: #efefef;
     }
     .detail-text.--detail {
       text-align: center;
+    }
+  }
+}
+/*** Hidden section ***/
+.hidden-wrapper {
+  .round-img-wrapper {
+    height: 50%;
+    text-align: center;
+    margin: auto;
+    display: flex;
+    .inner-round-img-wrapper {
+      height: calc(100% - 20px);
+      overflow: hidden;
+      margin: auto;
+      border-radius: 50%;
+    }
+    .round-img {
+      height: 140%;
+      width: auto;
+      margin-top: -20%;
+    }
+  }
+  .hidden-detail-wrapper {
+    padding: 10px 20px;
+    padding-top: 0;
+    .shelter {
+      display: block;
+      text-align: center;
+      margin: 10px 0;
+      font-size: 1.1rem;
+    }
+  }
+  .hidden-detail-wrapper .hidden-row {
+    display: flex;
+    margin-bottom: 10px;
+    .hidden-icon {
+      margin-right: 20px;
+    }
+    .hidden-detail {
+      font-size: 14px;
+    }
+  }
+}
+/*--------- Landscape Devices ---------*/
+/***** LG Devices *****/
+@media (min-width: 1200px) and (orientation: landscape){
+  .hidden-wrapper {
+    .hidden-detail-wrapper {
+      .shelter {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+}
+/***** MD Devices*****/
+@media (min-width: 993px) and (max-width: 1199px) and (orientation: landscape){
+
+}
+/***** SM Devices *****/
+@media (min-width: 768px) and (max-width: 992px) and (orientation: landscape){
+  .card-container .detail-wrapper {
+    margin-top: 5px;
+    .detail-row {
+      margin-bottom: 2px;
+      .detail-text {
+        font-size: 14px;
+      }
+    }
+  }
+  .hidden-wrapper {
+    .round-img-wrapper {
+      .inner-round-img-wrapper {
+        height: calc(100% - 10px);
+      }
+    }
+    .hidden-detail-wrapper {
+      padding: 5px 10px;
+      padding-top: 0;
+      .shelter {
+        font-size: 14px;
+      }
+      .hidden-row {
+        .hidden-icon {
+          font-size: 14px;
+          margin-right: 10px;
+        }
+        .hidden-detail {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+/***** XS Devices *****/
+@media (min-width: 480px) and (max-width: 767px) and (orientation: landscape){
+  .card-container .detail-wrapper {
+    margin-top: 10px;
+  }
+  .hidden-wrapper {
+    .hidden-detail-wrapper {
+      .shelter {
+        font-size: 14px;
+      }
+    }
+  }
+}
+/***** XXS Devices *****/
+@media (max-width: 479px) and (orientation: landscape){
+
+}
+/*--------- Portrait Devices ---------*/
+/***** LG Devices *****/
+@media (min-width: 1200px) and (orientation: portrait){
+  .hidden-wrapper {
+    .hidden-detail-wrapper {
+      .shelter {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+/***** MD Devices*****/
+@media (min-width: 993px) and (max-width: 1199px) and (orientation: portrait){
+  .hidden-wrapper {
+    .hidden-detail-wrapper {
+      .shelter {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+/***** SM Devices *****/
+@media (min-width: 768px) and (max-width: 992px) and (orientation: portrait){
+  .card-container .detail-wrapper {
+    margin-top: 10px;
+  }
+  .hidden-wrapper {
+    .hidden-detail-wrapper {
+      padding: 10px;
+      padding-top: 0;
+      .hidden-row .hidden-icon {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+/***** XS Devices *****/
+@media (min-width: 480px) and (max-width: 767px) and (orientation: portrait){
+
+}
+/***** XXS Devices *****/
+@media (max-width: 479px) and (orientation: portrait){
+  .card-container .detail-wrapper {
+    margin-top: 0;
+    .detail-row {
+      width: 80%;
+      margin-bottom: 0;
+      .detail-text {
+        font-size: 14px;
+      }
+    }
+  }
+  .hidden-wrapper {
+    .hidden-detail-wrapper {
+      padding: 5px;
+      padding-top: 0;
+      .shelter {
+        font-size: 14px;
+        margin: 0;
+        margin-bottom: 5px;
+      }
+      .hidden-row {
+        margin-bottom: 5px;
+      }
+      .hidden-row .hidden-icon {
+        margin-right: 5px;
+        margin-left: 5px;
+        font-size: 12px;
+      }
+      .hidden-row  .hidden-detail {
+        font-size: 14px;
+      }
     }
   }
 }
