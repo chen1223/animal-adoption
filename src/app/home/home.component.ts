@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // Get inspired text
   setInspiredText(): void {
-    const index = (Math.floor(Math.random() * 10)) % 4;
+    const index = (Math.floor(Math.random() * 10)) % 3;
     this.inspiredText = this.inspiredList[index];
   }
 

@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(private animalService: AnimalService) { }
 
   ngOnInit() {
+    window.scroll(0, 0);
     this.addBackgroundImg();
     this.loadAnimalData();
   }

@@ -9,10 +9,10 @@ export class HeroService {
 
   // Hero image list
   heroList = [
-    '/assets/img/hero1.jpg',
-    '/assets/img/hero2.jpg',
-    '/assets/img/hero3.jpg',
-    '/assets/img/hero4.jpg'
+    './assets/img/hero1.jpg',
+    './assets/img/hero2.jpg',
+    './assets/img/hero3.jpg',
+    './assets/img/hero4.jpg'
   ];
   selected = [];
   index = 0;
