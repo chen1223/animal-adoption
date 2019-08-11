@@ -62,7 +62,15 @@
     </form>
   </section>
   <!-- Animal listing section -->
-  <section class="animal-section" [ngClass]="{'additional-opened': additionalFilter}">
-    <animal-card *ngFor="let animal of animalShowing" [data]="animal"></animal-card>
-  </section>
+  <virtual-scroller class="animal-section"
+                    #scroll
+                    [items]="animalShowing"
+                    [parentScroll]="scroll.window"
+                    [ngClass]="{
+                      'additional-opened': additionalFilter
+                    }"
+                    (vsEnd)="fetchMore($event)">
+    <animal-card *ngFor="let animal of scroll.viewPortItems" [data]="animal"></animal-card>
+    <span *ngIf="loading" class="loading-hint">Loading...</span>
+  </virtual-scroller>
 </div>

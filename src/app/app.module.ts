@@ -17,6 +17,7 @@ import { faCaretDown,
          faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { CardComponent } from './home/card/card.component';
 import { ProfileComponent } from './profile/profile.component';
+import { VirtualScrollerModule } from 'ngx-virtual-scroller';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ProfileComponent } from './profile/profile.component';
   ],
   imports: [
     BrowserModule,
+    VirtualScrollerModule,
     FontAwesomeModule,
     AppRoutingModule
   ],

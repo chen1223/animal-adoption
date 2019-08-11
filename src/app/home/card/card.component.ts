@@ -15,6 +15,9 @@ export class CardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Image W : H portion
   imgPortion = 1.15;
+
+  // Round image W : H portion
+  roundImgPortion = 1;
   @Input() data: Object;
 
   constructor(private elementRef: ElementRef,
@@ -36,6 +39,11 @@ export class CardComponent implements OnInit, AfterViewInit, OnDestroy {
     const imgContainer = <HTMLDivElement> this.elementRef.nativeElement.querySelector('.img-wrapper');
     const imgHeight = cardWidth / this.imgPortion;
     imgContainer.style.height = `${imgHeight}px`;
+    // Render inner-round-img-wrapper width based on height: 1:1
+    const roundImgContainer = <HTMLDivElement> this.elementRef.nativeElement.querySelector('.inner-round-img-wrapper');
+    const roundImgH = roundImgContainer.offsetHeight;
+    const roundImgWidth = roundImgH / this.roundImgPortion;
+    roundImgContainer.style.width = `${roundImgWidth}px`;
   }
 
   // Store data in localStorage and sessionStorage on click

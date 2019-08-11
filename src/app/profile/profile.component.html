@@ -12,7 +12,26 @@
   <!-- Profile image section -->
   <section class="profile-wrapper">
     <div class="inner-profile-wrapper">
-      <img class="profile-img" [src]="data?.album_file" [alt]="data?.animal_kind + ': ' + data?.animal_id">
+      <ng-container [ngSwitch]="data?.animal_kind">
+        <!-- Dog -->
+        <ng-container *ngSwitchCase="'狗'">
+          <ng-container *ngIf="data?.album_file;else hiddenEmptyDog">
+            <img class="profile-img" [src]="data['album_file']" [alt]="data['animal_kind'] + ': ' + data['animal_id']" loading="lazy">
+          </ng-container>
+          <ng-template #hiddenEmptyDog>
+            <img class="profile-img" src="/assets/img/dog.jpg" alt="dog picture" loading="lazy">
+          </ng-template>
+        </ng-container>
+        <!-- Cat -->
+        <ng-container *ngSwitchCase="'貓'">
+          <ng-container *ngIf="data?.album_file !== '';else hiddenEmptyCat">
+            <img class="profile-img" [src]="data['album_file']" [alt]="data['animal_kind'] + ': ' + data['animal_id']" loading="lazy">
+          </ng-container>
+          <ng-template #hiddenEmptyCat>
+            <img class="profile-img" src="/assets/img/cat.png" alt="dog picture" loading="lazy">
+          </ng-template>
+        </ng-container>
+      </ng-container>
     </div>
   </section>
   <!-- Detail section -->
@@ -25,7 +44,7 @@
     <!-- 絕育 -->
     <div class="detail-wrapper">
       <span class="detail-title">絕育</span>
-      <ng-container [ngSwitch]="data.animal_sterilization">
+      <ng-container [ngSwitch]="data?.animal_sterilization">
         <span class="detail" *ngSwitchCase="'T'">有</span>
         <span class="detail" *ngSwitchCase="'F'">無</span>
         <span class="detail" *ngSwitchCase="'N'">未輸入</span>
@@ -39,7 +58,7 @@
     <!-- 施打狂犬疫苗 -->
     <div class="detail-wrapper">
       <span class="detail-title">施打狂犬疫苗</span>
-      <ng-container [ngSwitch]="data.animal_bacterin">
+      <ng-container [ngSwitch]="data?.animal_bacterin">
         <span class="detail" *ngSwitchCase="'T'">是</span>
         <span class="detail" *ngSwitchCase="'F'">否</span>
         <span class="detail" *ngSwitchCase="'N'">未輸入</span>
@@ -58,7 +77,7 @@
     <!-- 年齡 -->
     <div class="detail-wrapper">
       <span class="detail-title">年齡</span>
-      <ng-container [ngSwitch]="data.animal_age">
+      <ng-container [ngSwitch]="data?.animal_age">
         <span class="detail" *ngSwitchCase="'CHILD'">幼年</span>
         <span class="detail" *ngSwitchCase="'ADULT'">成年</span>
       </ng-container>
@@ -81,7 +100,7 @@
     <!-- 性別 -->
     <div class="detail-wrapper">
       <span class="detail-title">性別</span>
-      <ng-container [ngSwitch]="data.gender">
+      <ng-container [ngSwitch]="data?.gender">
         <span class="detail" *ngSwitchCase="'M'">公</span>
         <span class="detail" *ngSwitchCase="'F'">母</span>
         <span class="detail" *ngSwitchCase="'N'">未輸入</span>

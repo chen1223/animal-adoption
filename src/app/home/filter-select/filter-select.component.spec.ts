@@ -20,12 +20,10 @@ describe('FilterSelectComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-  it('should have class name "filter-select"', () => {
-    expect(fixture.nativeElement.classList).toContain('filter-select');
-  });
 
   it('should have wrapper', () => {
-    expect(fixture.nativeElement.querySelectorAll('.filter-wrapper').length).toBe(1);
+    const el = fixture.nativeElement.querySelectorAll('.filter-wrapper');
+    expect(el.length).toBe(1);
   });
 
   it('should show selected item', () => {

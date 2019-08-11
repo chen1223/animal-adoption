@@ -1,7 +1,12 @@
 $bgColor: #fdfdfd;
+:host {
+  display: block;
+}
 .link-wrapper {
   text-decoration: none;
   color: black;
+  width: 100%;
+  display: block;
 }
 .card-container {
   display: block;
@@ -12,7 +17,7 @@ $bgColor: #fdfdfd;
   overflow: hidden;
   position: relative;
   cursor: pointer;
-  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, .5);
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, .5);
   &:hover,
   &:focus {
     .hidden-wrapper {

@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AnimalService {
+
+  // Actual API link
+  apiLink: string = 'https://cors-anywhere.herokuapp.com/http://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=QcbUEzN6E6DL';
 
   // Body size mapping dictionary
   sizeDict = {
@@ -76,7 +80,7 @@ export class AnimalService {
     96: '苗栗縣生態保育教育中心'
   };
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   // Return animal body size based on incoming key
   getSize(sizeKey: string): string {
@@ -94,217 +98,15 @@ export class AnimalService {
   }
 
   // Return list of animals
-  getAnimals(skip: number, top: number): Observable<Object> {
-    return new Observable(observer => {
-      setTimeout(() => {
-        observer.next([
-          {
-            "animal_id": 108250,
-            "animal_subid": "GAAAG1080710014",
-            "animal_area_pkid": 11,
-            "animal_shelter_pkid": 69,
-            "animal_place": "彰化縣流浪狗中途之家",
-            "animal_kind": "狗",
-            "animal_sex": "F",
-            "animal_bodytype": "MEDIUM",
-            "animal_colour": "黃虎斑色",
-            "animal_age": "ADULT",
-            "animal_sterilization": "T",
-            "animal_bacterin": "F",
-            "animal_foundplace": "花秀路526巷15號",
-            "animal_title": "",
-            "animal_status": "OPEN",
-            "animal_remark": "入所時有紅色項圈，108.07.17開放認養",
-            "animal_caption": "",
-            "animal_opendate": "2019-07-17",
-            "animal_closeddate": "2999-12-31",
-            "animal_update": "2019/08/05",
-            "animal_createtime": "2019/07/10",
-            "shelter_name": "彰化縣流浪狗中途之家",
-            "album_file": "http://asms.coa.gov.tw/amlapp/upload/pic/079c4a3d-2996-4fd4-9630-695e776ed40f_org.jpg",
-            "album_update": "",
-            "cDate": "2019/08/05",
-            "shelter_address": "彰化縣員林鎮大峰里阿寶巷426號",
-            "shelter_tel": "04-8590638"
-          },
-          {
-            "animal_id": 108250,
-            "animal_subid": "GAAAG1080710014",
-            "animal_area_pkid": 11,
-            "animal_shelter_pkid": 69,
-            "animal_place": "彰化縣流浪狗中途之家",
-            "animal_kind": "狗",
-            "animal_sex": "F",
-            "animal_bodytype": "MEDIUM",
-            "animal_colour": "黃虎斑色",
-            "animal_age": "ADULT",
-            "animal_sterilization": "T",
-            "animal_bacterin": "F",
-            "animal_foundplace": "花秀路526巷15號",
-            "animal_title": "",
-            "animal_status": "OPEN",
-            "animal_remark": "入所時有紅色項圈，108.07.17開放認養",
-            "animal_caption": "",
-            "animal_opendate": "2019-07-17",
-            "animal_closeddate": "2999-12-31",
-            "animal_update": "2019/08/05",
-            "animal_createtime": "2019/07/10",
-            "shelter_name": "彰化縣流浪狗中途之家",
-            "album_file": "http://asms.coa.gov.tw/amlapp/upload/pic/079c4a3d-2996-4fd4-9630-695e776ed40f_org.jpg",
-            "album_update": "",
-            "cDate": "2019/08/05",
-            "shelter_address": "彰化縣員林鎮大峰里阿寶巷426號",
-            "shelter_tel": "04-8590638"
-          },
-          {
-            "animal_id": 108250,
-            "animal_subid": "GAAAG1080710014",
-            "animal_area_pkid": 11,
-            "animal_shelter_pkid": 69,
-            "animal_place": "彰化縣流浪狗中途之家",
-            "animal_kind": "狗",
-            "animal_sex": "F",
-            "animal_bodytype": "MEDIUM",
-            "animal_colour": "黃虎斑色",
-            "animal_age": "ADULT",
-            "animal_sterilization": "T",
-            "animal_bacterin": "F",
-            "animal_foundplace": "花秀路526巷15號",
-            "animal_title": "",
-            "animal_status": "OPEN",
-            "animal_remark": "入所時有紅色項圈，108.07.17開放認養",
-            "animal_caption": "",
-            "animal_opendate": "2019-07-17",
-            "animal_closeddate": "2999-12-31",
-            "animal_update": "2019/08/05",
-            "animal_createtime": "2019/07/10",
-            "shelter_name": "彰化縣流浪狗中途之家",
-            "album_file": "http://asms.coa.gov.tw/amlapp/upload/pic/079c4a3d-2996-4fd4-9630-695e776ed40f_org.jpg",
-            "album_update": "",
-            "cDate": "2019/08/05",
-            "shelter_address": "彰化縣員林鎮大峰里阿寶巷426號",
-            "shelter_tel": "04-8590638"
-          },
-          {
-            "animal_id": 108250,
-            "animal_subid": "GAAAG1080710014",
-            "animal_area_pkid": 11,
-            "animal_shelter_pkid": 69,
-            "animal_place": "彰化縣流浪狗中途之家",
-            "animal_kind": "狗",
-            "animal_sex": "F",
-            "animal_bodytype": "MEDIUM",
-            "animal_colour": "黃虎斑色",
-            "animal_age": "ADULT",
-            "animal_sterilization": "T",
-            "animal_bacterin": "F",
-            "animal_foundplace": "花秀路526巷15號",
-            "animal_title": "",
-            "animal_status": "OPEN",
-            "animal_remark": "入所時有紅色項圈，108.07.17開放認養",
-            "animal_caption": "",
-            "animal_opendate": "2019-07-17",
-            "animal_closeddate": "2999-12-31",
-            "animal_update": "2019/08/05",
-            "animal_createtime": "2019/07/10",
-            "shelter_name": "彰化縣流浪狗中途之家",
-            "album_file": "http://asms.coa.gov.tw/amlapp/upload/pic/079c4a3d-2996-4fd4-9630-695e776ed40f_org.jpg",
-            "album_update": "",
-            "cDate": "2019/08/05",
-            "shelter_address": "彰化縣員林鎮大峰里阿寶巷426號",
-            "shelter_tel": "04-8590638"
-          },
-          {
-            "animal_id": 108250,
-            "animal_subid": "GAAAG1080710014",
-            "animal_area_pkid": 11,
-            "animal_shelter_pkid": 69,
-            "animal_place": "彰化縣流浪狗中途之家",
-            "animal_kind": "狗",
-            "animal_sex": "F",
-            "animal_bodytype": "MEDIUM",
-            "animal_colour": "黃虎斑色",
-            "animal_age": "ADULT",
-            "animal_sterilization": "T",
-            "animal_bacterin": "F",
-            "animal_foundplace": "花秀路526巷15號",
-            "animal_title": "",
-            "animal_status": "OPEN",
-            "animal_remark": "入所時有紅色項圈，108.07.17開放認養",
-            "animal_caption": "",
-            "animal_opendate": "2019-07-17",
-            "animal_closeddate": "2999-12-31",
-            "animal_update": "2019/08/05",
-            "animal_createtime": "2019/07/10",
-            "shelter_name": "彰化縣流浪狗中途之家",
-            "album_file": "http://asms.coa.gov.tw/amlapp/upload/pic/079c4a3d-2996-4fd4-9630-695e776ed40f_org.jpg",
-            "album_update": "",
-            "cDate": "2019/08/05",
-            "shelter_address": "彰化縣員林鎮大峰里阿寶巷426號",
-            "shelter_tel": "04-8590638"
-          },
-          {
-            "animal_id": 108250,
-            "animal_subid": "GAAAG1080710014",
-            "animal_area_pkid": 11,
-            "animal_shelter_pkid": 69,
-            "animal_place": "彰化縣流浪狗中途之家",
-            "animal_kind": "狗",
-            "animal_sex": "F",
-            "animal_bodytype": "MEDIUM",
-            "animal_colour": "黃虎斑色",
-            "animal_age": "ADULT",
-            "animal_sterilization": "T",
-            "animal_bacterin": "F",
-            "animal_foundplace": "花秀路526巷15號",
-            "animal_title": "",
-            "animal_status": "OPEN",
-            "animal_remark": "入所時有紅色項圈，108.07.17開放認養",
-            "animal_caption": "",
-            "animal_opendate": "2019-07-17",
-            "animal_closeddate": "2999-12-31",
-            "animal_update": "2019/08/05",
-            "animal_createtime": "2019/07/10",
-            "shelter_name": "彰化縣流浪狗中途之家",
-            "album_file": "http://asms.coa.gov.tw/amlapp/upload/pic/079c4a3d-2996-4fd4-9630-695e776ed40f_org.jpg",
-            "album_update": "",
-            "cDate": "2019/08/05",
-            "shelter_address": "彰化縣員林鎮大峰里阿寶巷426號",
-            "shelter_tel": "04-8590638"
-          },
-          {
-            "animal_id": 108250,
-            "animal_subid": "GAAAG1080710014",
-            "animal_area_pkid": 11,
-            "animal_shelter_pkid": 69,
-            "animal_place": "彰化縣流浪狗中途之家",
-            "animal_kind": "狗",
-            "animal_sex": "F",
-            "animal_bodytype": "MEDIUM",
-            "animal_colour": "黃虎斑色",
-            "animal_age": "ADULT",
-            "animal_sterilization": "T",
-            "animal_bacterin": "F",
-            "animal_foundplace": "花秀路526巷15號",
-            "animal_title": "",
-            "animal_status": "OPEN",
-            "animal_remark": "入所時有紅色項圈，108.07.17開放認養",
-            "animal_caption": "",
-            "animal_opendate": "2019-07-17",
-            "animal_closeddate": "2999-12-31",
-            "animal_update": "2019/08/05",
-            "animal_createtime": "2019/07/10",
-            "shelter_name": "彰化縣流浪狗中途之家",
-            "album_file": "http://asms.coa.gov.tw/amlapp/upload/pic/079c4a3d-2996-4fd4-9630-695e776ed40f_org.jpg",
-            "album_update": "",
-            "cDate": "2019/08/05",
-            "shelter_address": "彰化縣員林鎮大峰里阿寶巷426號",
-            "shelter_tel": "04-8590638"
-          }
-        ]);
-        observer.complete();
-      }, 0);
+  getAnimals(skip: number, top: number, conditions: Object): Observable<Object> {
+    const params = {
+      '$top': top.toString(),
+      '$skip': skip.toString()
+    };
+    Object.keys(conditions).forEach(key => {
+      params[key] = conditions[key];
     });
+    return this.http.get(`${this.apiLink}`, { params: params });
   }
 
   // Store given data to localStorage and sessionStorage

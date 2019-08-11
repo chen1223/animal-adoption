@@ -237,9 +237,6 @@ describe('HomeComponent', () => {
     component.ngOnInit();
     expect(fnc).toHaveBeenCalled();
   });
-  it('should have a variable called animalPools to hold all animal data', () => {
-    expect(component.animalPools).toBeTruthy();
-  });
   it('should make API call by calling the getAnimals function', () => {
     let apiFnc = spyOn(animalService, 'getAnimals').and.returnValue(of([{
       dummy: 'test2'
@@ -247,26 +244,8 @@ describe('HomeComponent', () => {
     component.getAnimals();
     expect(apiFnc).toHaveBeenCalled();
   });
-  it('should clear animal pools before calling the getAnimals function', () => {
-    component.animalPools = [{ dummy: 'test' }];
-    spyOn(animalService, 'getAnimals').and.returnValue(of([
-      {
-        dummy: 'test2'
-      }
-    ]));
-    component.getAnimals();
-    fixture.detectChanges();
-    expect(component.animalPools.length).toBe(1);
-  });
   it('should have a variable called animalShowing to hold animal data currently shown to the user', () => {
     expect(component.animalShowing).toBeTruthy();
-  });
-  it('should render correct number of cards on screen', () => {
-    const dummyData = [{ dummy: 'test' }, { dummy: 'test 2' }];
-    component.animalShowing = dummyData;
-    fixture.detectChanges();
-    let cardElments = fixture.nativeElement.querySelectorAll('animal-card');
-    expect(cardElments.length).toBe(dummyData.length);
   });
   it('should map animal city for incoming animal API data', () => {
     const dummyData = [{

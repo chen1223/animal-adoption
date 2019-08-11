@@ -67,6 +67,10 @@ describe('CardComponent', () => {
     let imgWrapper = <HTMLDivElement> fixture.nativeElement.querySelector('.img-wrapper');
     let imgHeight = Math.round(200 / component.imgPortion);
     expect(imgWrapper.offsetHeight).toBe(imgHeight);
+    // Round image width and height testing
+    let roundImgWrapper = <HTMLDivElement> fixture.nativeElement.querySelector('.inner-round-img-wrapper');
+    let roundWidth = Math.round(200 / component.roundImgPortion);
+    expect(roundImgWrapper.offsetWidth).toBe(roundWidth);
   });
 
   /**

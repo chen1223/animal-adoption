@@ -63,6 +63,8 @@ describe('AnimalService', () => {
   });
 
   // Animal API testing
-
+  it('should declare API link', () => {
+    expect(animalService.apiLink).toBeDefined();
+  });
 
 });

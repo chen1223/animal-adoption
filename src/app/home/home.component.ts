@@ -4,6 +4,7 @@ import { FilterService } from '../services/filter.service';
 import { FormBuilder, FormArray, FormControl, FormGroup } from '@angular/forms';
 import { AnimalService } from '../services/animal.service';
 import { map } from 'rxjs/operators';
+import { IPageInfo } from 'ngx-virtual-scroller';
 
 @Component({
   selector: 'app-home',
@@ -16,9 +17,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   inspiredText: string = '';
   inspiredList: string[] = [
     '找個可以陪您走下一段旅程的朋友',
-    'dummy string 2',
-    'dummy string 3',
-    'dummy string 4',
+    '讓他重新感受家的溫暖',
+    '領養代替購買'
   ];
   // Hero image src
   heroImg = '';
@@ -35,41 +35,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   // Determine status of the search section in mobile: true: 'search-opened', false: 'search-closed'
   mobileSearchOpen: boolean = false;
 
-  // Animals array that hold data of all animals obtained from API
-  animalPools: Object[] = [];
+  // Determine number of items fetch from API everytime
+  batchSize: number = 20;
+
   // Animals array that hold data of all animals currently shown to user
   animalShowing: Object[] = [];
 
-  // TODO: Remove
-  dataTodo = {
-    "animal_id": 108250,
-    "animal_subid": "GAAAG1080710014",
-    "animal_area_pkid": 11,
-    "animal_shelter_pkid": 69,
-    "animal_place": "彰化縣流浪狗中途之家",
-    "animal_kind": "狗",
-    "animal_sex": "F",
-    "animal_bodytype": "MEDIUM",
-    "animal_colour": "黃虎斑色",
-    "animal_age": "ADULT",
-    "animal_sterilization": "T",
-    "animal_bacterin": "F",
-    "animal_foundplace": "花秀路526巷15號",
-    "animal_title": "",
-    "animal_status": "OPEN",
-    "animal_remark": "入所時有紅色項圈，108.07.17開放認養",
-    "animal_caption": "",
-    "animal_opendate": "2019-07-17",
-    "animal_closeddate": "2999-12-31",
-    "animal_update": "2019/08/05",
-    "animal_createtime": "2019/07/10",
-    "shelter_name": "彰化縣流浪狗中途之家",
-    "album_file": "http://asms.coa.gov.tw/amlapp/upload/pic/079c4a3d-2996-4fd4-9630-695e776ed40f_org.jpg",
-    "album_update": "",
-    "cDate": "2019/08/05",
-    "shelter_address": "彰化縣員林鎮大峰里阿寶巷426號",
-    "shelter_tel": "04-8590638"
-  };
+  // Determine if there are currently API loading more data
+  loading: boolean = false;
 
   constructor(private heroService: HeroService,
               private filterService: FilterService,
@@ -81,7 +54,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.setInspiredText();
     this.setUpFilter();
     window.addEventListener('scroll', this.onScroll, true);
-    this.getAnimals();
+    this.getAnimals(0, this.batchSize, true);
   }
 
   // Get hero image
@@ -98,7 +71,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   // On scroll callback event
   onScroll(): void {
     const heroContainer = <HTMLDivElement> document.querySelector('.hero-img__container');
-    if (window.pageYOffset >= heroContainer.offsetHeight) {
+    if (heroContainer && window.pageYOffset >= heroContainer.offsetHeight) {
       document.querySelector('body').classList.add('scroll-passed');
     } else {
       document.querySelector('body').classList.remove('scroll-passed');
@@ -145,7 +118,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // Submit search
   applySearch(): void {
-    console.log('filterForm', this.filterGroup, this.filterGroup.value);
+    this.getAnimals(0, this.batchSize, true);
+    if (this.additionalFilter) {
+      this.toggleFilter();
+    }
+    if (this.mobileSearchOpen) {
+      this.toggleDrawer();
+    }
   }
 
   // Toggle additional filter list area
@@ -158,10 +137,26 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.mobileSearchOpen = !this.mobileSearchOpen;
   }
 
+  // Remove empty keys
+  getConditions(): Object {
+    const conditions = this.filterGroup.get('conditions').value;
+    Object.keys(conditions).forEach(key => {
+      if (!conditions[key]) {
+        delete conditions[key];
+      }
+    });
+    return conditions;
+  }
+
   // Get animals
-  getAnimals(skip: number = 0, top: number = 0): void {
-    this.animalPools = [];
-    this.animalService.getAnimals(skip, top)
+  getAnimals(skip: number = 0, top: number = 0, init: boolean = false): void {
+    if (init) {
+      this.animalShowing = [];
+    }
+    // Set up conditions
+    const conditions = this.getConditions();
+    skip = skip !== -1 ? skip: 0;
+    this.animalService.getAnimals(skip, top, conditions)
         .pipe(
           map((dataset: Object[]) => {
             dataset.forEach(data => {
@@ -179,13 +174,20 @@ export class HomeComponent implements OnInit, OnDestroy {
         )
         .subscribe(
           (data: any) => {
-            this.animalPools = [...data];
-            //TODO: Replace with actual implementation
-            this.animalShowing = [...data];
-            console.log('animal data', data);
+            this.loading = false;
+            this.animalShowing.push(...data);
           },
           err => {}
         );
+  }
+
+  fetchMore(e: IPageInfo): void {
+    if (e.endIndex !== this.animalShowing.length - 1) {
+      return;
+    }
+    this.loading = true;
+    const currentIndex = e.endIndexWithBuffer;
+    this.getAnimals(currentIndex, this.batchSize);
   }
 
   ngOnDestroy() {
