@@ -43,11 +43,23 @@ $heroBg: #1dd1a1;
   background: $heroBg;
   display: none;
   z-index: 1000;
-  .header-text {
-    display: block;
+  .header-wrapper {
+    display: flex;
     width: 80%;
     margin: auto;
-    color: white;
+    .header-text {
+      color: white;
+      margin: auto 0;
+    }
+    .header-item {
+      text-decoration: none;
+      color: white;
+      cursor: pointer;
+      font-size: 1.5rem;
+      margin: auto 0;
+      margin-left: auto;
+      margin-right: 30px;
+    }
   }
 }
 ::ng-deep {
@@ -134,6 +146,9 @@ virtual-scroller {
 }
 ::ng-deep {
   .animal-section {
+    &.additional-closed {
+      z-index: 3;
+    }
     .scrollable-content {
       margin-left: -10px;
       margin-right: -10px;
@@ -206,7 +221,7 @@ virtual-scroller {
     }
   }
   .secondary-header {
-    .header-text{
+    .header-wrapper {
       width: 90%;
     }
   }
@@ -289,8 +304,12 @@ virtual-scroller {
     }
   }
   .secondary-header {
-    .header-text{
-      width: 90%;
+    .header-wrapper {
+      width: 100%;
+      .header-item {
+        margin-right: 10px;
+        font-size: 1.2rem;
+      }
     }
   }
   ::ng-deep {
@@ -380,12 +399,15 @@ virtual-scroller {
   }
   /*** Animal list ***/
   ::ng-deep {
-    .animal-section .scrollable-content{
+    .animal-section {
       margin-top: 50px;
-      margin-left: 0;
-      margin-right: 0;
-      .animal-card {
-        width: calc(50% - 20px);
+      .scrollable-content{
+        margin-top: 0px;
+        margin-left: 0;
+        margin-right: 0;
+        .animal-card {
+          width: calc(50% - 20px);
+        }
       }
     }
   }
@@ -418,8 +440,12 @@ virtual-scroller {
     }
   }
   .secondary-header {
-    .header-text{
-      width: 90%;
+    .header-wrapper {
+      width: 100%;
+      .header-item {
+        margin-right: 10px;
+        font-size: 1.2rem;
+      }
     }
   }
   ::ng-deep {
@@ -509,11 +535,14 @@ virtual-scroller {
   }
   /*** Animal list ***/
   ::ng-deep {
-    .animal-section .scrollable-content{
-      margin: auto;
+    .animal-section {
       margin-top: 50px;
-      .animal-card {
-        width: 100%;
+      .scrollable-content{
+        margin: auto;
+        margin-top: 0px;
+        .animal-card {
+          width: 100%;
+        }
       }
     }
   }
@@ -566,6 +595,11 @@ virtual-scroller {
     }
     .inspire-text {
       font-size: 1.8rem;
+    }
+  }
+  .secondary-header {
+    .header-wrapper {
+      width: 90%;
     }
   }
   .search-container {
@@ -643,8 +677,12 @@ virtual-scroller {
     }
   }
   .secondary-header {
-    .header-text{
-      width: 90%;
+    .header-wrapper {
+      width: 100%;
+      .header-item {
+        margin-right: 10px;
+        font-size: 1.2rem;
+      }
     }
   }
   ::ng-deep {
@@ -734,12 +772,15 @@ virtual-scroller {
   }
   /*** Animal list ***/
   ::ng-deep {
-    .animal-section .scrollable-content{
-      margin-left: 0;
-      margin-right: 0;
+    .animal-section {
       margin-top: 50px;
-      .animal-card {
-        width: calc(50% - 20px);
+      .scrollable-content{
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 0px;
+        .animal-card {
+          width: calc(50% - 20px);
+        }
       }
     }
   }
@@ -772,8 +813,12 @@ virtual-scroller {
     }
   }
   .secondary-header {
-    .header-text{
-      width: 90%;
+    .header-wrapper {
+      width: 100%;
+      .header-item {
+        margin-right: 10px;
+        font-size: 1.2rem;
+      }
     }
   }
   ::ng-deep {
@@ -863,14 +908,17 @@ virtual-scroller {
   }
   /*** Animal list ***/
   ::ng-deep {
-    .animal-section .scrollable-content{
+    .animal-section {
       margin-top: 50px;
-      margin-left: 0;
-      margin-right: 0;
-      .animal-card {
-        width: calc(50% - 10px);
-        margin: 10px 5px;
-      }
+      .scrollable-content{
+       margin-top: 0;
+       margin-left: 0;
+       margin-right: 0;
+       .animal-card {
+         width: calc(50% - 10px);
+         margin: 10px 5px;
+       }
+     }
     }
   }
 }

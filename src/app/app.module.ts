@@ -18,6 +18,7 @@ import { faCaretDown,
 import { CardComponent } from './home/card/card.component';
 import { ProfileComponent } from './profile/profile.component';
 import { VirtualScrollerModule } from 'ngx-virtual-scroller';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { VirtualScrollerModule } from 'ngx-virtual-scroller';
     HomeComponent,
     FilterSelectComponent,
     CardComponent,
-    ProfileComponent
+    ProfileComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

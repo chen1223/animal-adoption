@@ -8,7 +8,10 @@
 </section>
 <!-- Secondary header -->
 <section class="secondary-header">
-  <h1 class="header-text">Animal Adoption</h1>
+  <div class="header-wrapper">
+    <h1 class="header-text">Animal Adoption</h1>
+    <a class="header-item" routerLink="/about">關於</a>
+  </div>
 </section>
 <div class="layout">
   <!-- Search section -->
@@ -67,7 +70,8 @@
                     [items]="animalShowing"
                     [parentScroll]="scroll.window"
                     [ngClass]="{
-                      'additional-opened': additionalFilter
+                      'additional-opened': additionalFilter,
+                      'additional-closed': !additionalFilter
                     }"
                     (vsEnd)="fetchMore($event)">
     <animal-card *ngFor="let animal of scroll.viewPortItems" [data]="animal"></animal-card>
