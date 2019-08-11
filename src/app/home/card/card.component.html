@@ -3,11 +3,11 @@
     <!-- <a class="link-wrapper" [routerLink]="['/animal', data?.animal_id]" (click)="storeData()"> -->
       <!-- Image Section -->
       <div class="img-wrapper">
-        <ng-container [ngSwitch]="data?.animal_kind">
+        <ng-container [ngSwitch]="data['animal_kind']">
           <!-- Dog -->
           <ng-container *ngSwitchCase="'狗'">
             <ng-container *ngIf="data?.album_file;else emptyDog">
-              <img class="main-img" [src]="data['album_file']" [alt]="data['animal_kind'] + ': ' + data['animal_id']" loading="lazy">
+              <img class="main-img" [src]="data['album_file']" [alt]="data?.animal_kind + ': ' + data?.animal_id" loading="lazy">
             </ng-container>
             <ng-template #emptyDog>
               <img class="main-img" src="/assets/img/dog.jpg" alt="dog picture" loading="lazy">
@@ -16,7 +16,7 @@
           <!-- Cat -->
           <ng-container *ngSwitchCase="'貓'">
             <ng-container *ngIf="data?.album_file !== '';else emptyCat">
-              <img class="main-img" [src]="data['album_file']" [alt]="data['animal_kind'] + ': ' + data['animal_id']" loading="lazy">
+              <img class="main-img" [src]="data['album_file']" [alt]="data?.animal_kind + ': ' + data?.animal_id" loading="lazy">
             </ng-container>
             <ng-template #emptyCat>
               <img class="main-img" src="/assets/img/cat.png" alt="dog picture" loading="lazy">
@@ -50,11 +50,11 @@
       <div class="hidden-wrapper">
         <div class="round-img-wrapper">
           <div class="inner-round-img-wrapper">
-            <ng-container [ngSwitch]="data?.animal_kind">
+            <ng-container [ngSwitch]="data['animal_kind']">
               <!-- Dog -->
               <ng-container *ngSwitchCase="'狗'">
                 <ng-container *ngIf="data?.album_file;else hiddenEmptyDog">
-                  <img class="round-img" [src]="data['album_file']" [alt]="data['animal_kind'] + ': ' + data['animal_id']" loading="lazy">
+                  <img class="round-img" [src]="data['album_file']" [alt]="data?.animal_kind + ': ' + data?.animal_id" loading="lazy">
                 </ng-container>
                 <ng-template #hiddenEmptyDog>
                   <img class="round-img" src="/assets/img/dog.jpg" alt="dog picture" loading="lazy">
@@ -63,7 +63,7 @@
               <!-- Cat -->
               <ng-container *ngSwitchCase="'貓'">
                 <ng-container *ngIf="data?.album_file !== '';else hiddenEmptyCat">
-                  <img class="round-img" [src]="data['album_file']" [alt]="data['animal_kind'] + ': ' + data['animal_id']" loading="lazy">
+                  <img class="round-img" [src]="data['album_file']" [alt]="data?.animal_kind + ': ' + data?.animal_id" loading="lazy">
                 </ng-container>
                 <ng-template #hiddenEmptyCat>
                   <img class="round-img" src="/assets/img/cat.png" alt="dog picture" loading="lazy">

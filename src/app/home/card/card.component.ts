@@ -18,7 +18,7 @@ export class CardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Round image W : H portion
   roundImgPortion = 1;
-  @Input() data: Object;
+  @Input() data;
 
   constructor(private elementRef: ElementRef,
               private animalService: AnimalService) { }
