@@ -44,6 +44,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   // Determine if there are currently API loading more data
   loading: boolean = false;
 
+  // Determine the last called API index
+  lastCalledIndex: number = 0;
+
   constructor(private heroService: HeroService,
               private filterService: FilterService,
               private animalService: AnimalService,
@@ -54,7 +57,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.setInspiredText();
     this.setUpFilter();
     window.addEventListener('scroll', this.onScroll, true);
-    this.getAnimals(0, this.batchSize, true);
+    this.getAnimals(0, true);
   }
 
   // Get hero image
@@ -118,7 +121,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // Submit search
   applySearch(): void {
-    this.getAnimals(0, this.batchSize, true);
+    console.log('apply search');
+    this.getAnimals(0, true);
     if (this.additionalFilter) {
       this.toggleFilter();
     }
@@ -149,14 +153,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   // Get animals
-  getAnimals(skip: number = 0, top: number = 0, init: boolean = false): void {
+  getAnimals(skip: number = 0, init: boolean = false): void {
+    this.lastCalledIndex = skip;
     if (init) {
       this.animalShowing = [];
     }
     // Set up conditions
     const conditions = this.getConditions();
     skip = skip !== -1 ? skip: 0;
-    this.animalService.getAnimals(skip, top, conditions)
+    this.animalService.getAnimals(skip, this.batchSize, conditions)
         .pipe(
           map((dataset: Object[]) => {
             dataset.forEach(data => {
@@ -182,12 +187,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   fetchMore(e: IPageInfo): void {
-    if (e.endIndex !== this.animalShowing.length - 1) {
+    const currentIndex = e.endIndexWithBuffer === -1 ? 0 : e.endIndexWithBuffer;
+    if (e.endIndex !== this.animalShowing.length - 1 || currentIndex === this.lastCalledIndex) {
       return;
     }
     this.loading = true;
-    const currentIndex = e.endIndexWithBuffer;
-    this.getAnimals(currentIndex, this.batchSize);
+    this.getAnimals(currentIndex);
   }
 
   ngOnDestroy() {

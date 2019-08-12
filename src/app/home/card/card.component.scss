@@ -48,6 +48,7 @@ $bgColor: #fdfdfd;
   text-align: center;
   .main-img {
     height: 100%;
+    max-width: 100%;
     width: auto;
   }
 }
@@ -83,6 +84,7 @@ $bgColor: #fdfdfd;
     }
     .round-img {
       height: 140%;
+      max-width: 100%;
       width: auto;
       margin-top: -20%;
     }
