@@ -80,12 +80,6 @@ describe('HomeComponent', () => {
   /**
    * Hero image
    */
-  it('should have a hero image wrapper element', () => {
-    expect(fixture.nativeElement.querySelectorAll('.hero-wrapper').length).toBe(1);
-  });
-  it('should have a hero image', () => {
-    expect(fixture.nativeElement.querySelectorAll('.hero-img').length).toBe(1);
-  });
   it('should call heroAPI onInit', () => {
     const fakeResponse = {
         "url": "https://cdn2.thedogapi.com/images/B1IcfgqE7_1280.jpg"
@@ -101,7 +95,7 @@ describe('HomeComponent', () => {
     spyOn(heroService, 'getHero').and.returnValue(dummyImg);
     component.setUpHeroImg();
     fixture.detectChanges();
-    const heroImg = <HTMLElement> fixture.nativeElement.querySelector('.hero-img');
+    const heroImg = <HTMLElement> fixture.nativeElement.querySelector('.hero-img__container');
     expect(heroImg.style.backgroundImage).toBe(`url("${dummyImg}")`);
   });
 

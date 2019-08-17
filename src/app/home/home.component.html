@@ -1,10 +1,6 @@
 <!-- Hero image section -->
-<section class="hero-img__container">
-  <div class="hero-wrapper">
-    <h1 class="inspire-text">{{ inspiredText }}</h1>
-    <div class="hero-img" [ngStyle]="{ 'background-image': 'url(' + heroImg + ')' }">
-    </div>
-  </div>
+<section class="hero-img__container" [ngStyle]="{ 'background-image': 'url(' + heroImg + ')' }">
+  <span class="inspire-text">{{ inspiredText }}</span>
 </section>
 <!-- Secondary header -->
 <section class="secondary-header">
@@ -74,7 +70,7 @@
                       'additional-closed': !additionalFilter
                     }"
                     (vsEnd)="fetchMore($event)">
-    <animal-card *ngFor="let animal of scroll.viewPortItems" [data]="animal"></animal-card>
+    <animal-card *ngFor="let animal of scroll.viewPortItems" [data]="animal" [@fadeIn]></animal-card>
     <span *ngIf="loading" class="loading-hint">Loading...</span>
   </virtual-scroller>
 </div>

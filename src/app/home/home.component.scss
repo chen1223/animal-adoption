@@ -7,34 +7,43 @@ $heroBg: #1dd1a1;
   width: 100%;
   height: 400px;
   background: $heroBg;
-  .hero-wrapper {
-    width: 80%;
-    height: 100%;
-    margin: auto;
-    position: relative;
-    padding: 10px;
-    box-sizing: border-box;
-    /* Inspired text */
-    .inspire-text {
-      color: white;
-      margin: 0;
-      font-size: 2rem;
-      width: 90%;
-    }
-    /* Hero image */
-    .hero-img {
-      width: 80%;
-      height: 80%;
-      margin: auto;
-      text-align: center;
-      background-size: cover;
-      background-position: center;
-      position: absolute;
-      bottom: 0;
-      left: calc(50% - 40%);
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
-    }
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: dropin .45s ease-out forwards;
+  /* Inspired text */
+  .inspire-text {
+    font-weight: bold;
+    color: white;
+    font-size: 3rem;
+    text-shadow: 2px 3px 0 rgba(0, 0, 0, 0.2);
+    animation: text-flyin .6s ease-out both .45s;
+  }
+}
+// Animation for hero image
+@keyframes dropin {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+// Animation for inspired text
+@keyframes text-flyin {
+  0% {
+    opacity: 0;
+    transform: scale(.6);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 /*** Secondary header ***/
@@ -181,10 +190,8 @@ virtual-scroller {
 @media (min-width: 993px) and (max-width: 1199px) and (orientation: landscape){
   .hero-img__container {
     height: 300px;
-    .hero-wrapper {
-      .hero-img {
-        height: 70%;
-      }
+    .inspire-text {
+      font-size: 2.5rem;
     }
   }
   .search-container {
@@ -209,15 +216,8 @@ virtual-scroller {
 @media (min-width: 768px) and (max-width: 992px) and (orientation: landscape){
   .hero-img__container {
     height: 250px;
-    .hero-wrapper {
-      width: 100%;
-      .inspire-text {
-        width: 80%;
-        margin: auto;
-      }
-      .hero-img {
-        height: 70%;
-      }
+    .inspire-text {
+      font-size: 2rem;
     }
   }
   .secondary-header {
@@ -279,28 +279,10 @@ virtual-scroller {
 /***** XS Devices *****/
 @media (min-width: 480px) and (max-width: 767px) and (orientation: landscape){
   .hero-img__container {
-    height: auto;
-    .hero-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      width: 100%;
-      padding: 0;
-      flex-direction: column;
-      .inspire-text {
-        order: 2;
-        width: 90%;
-        margin: auto;
-        font-size: 24px;
-        padding: 20px 0;
-      }
-      .hero-img {
-        order: 1;
-        position: relative;
-        width: 100%;
-        height: 200px;
-        left: 0;
-        margin: 0;
-      }
+    height: 60%;
+    height: 60vh;
+    .inspire-text {
+      font-size: 24px;
     }
   }
   .secondary-header {
@@ -415,28 +397,10 @@ virtual-scroller {
 /***** XXS Devices *****/
 @media (max-width: 479px) and (orientation: landscape){
   .hero-img__container {
-    height: auto;
-    .hero-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      width: 100%;
-      padding: 0;
-      flex-direction: column;
-      .inspire-text {
-        order: 2;
-        width: 90%;
-        margin: auto;
-        font-size: 24px;
-        padding: 10px 0;
-      }
-      .hero-img {
-        order: 1;
-        position: relative;
-        width: 100%;
-        height: 200px;
-        left: 0;
-        margin: 0;
-      }
+    height: 60%;
+    height: 60vh;
+    .inspire-text {
+      font-size: 24px;
     }
   }
   .secondary-header {
@@ -562,6 +526,13 @@ virtual-scroller {
 }
 /***** MD Devices*****/
 @media (min-width: 993px) and (max-width: 1199px) and (orientation: portrait){
+  .hero-img__container {
+    height: 30%;
+    height: 30vh;
+  }
+  .inspire-text {
+    font-size: 2.5rem;
+  }
   .search-container {
     .filter-container {
       width: 67%;
@@ -589,12 +560,10 @@ virtual-scroller {
 /***** SM Devices *****/
 @media (min-width: 768px) and (max-width: 992px) and (orientation: portrait){
   .hero-img__container {
-    height: 300px;
-    .hero-wrapper {
-      width: 90%;
-    }
+    height: 30%;
+    height: 30vh;
     .inspire-text {
-      font-size: 1.8rem;
+      font-size: 2rem;
     }
   }
   .secondary-header {
@@ -652,28 +621,10 @@ virtual-scroller {
 /***** XS Devices *****/
 @media (min-width: 480px) and (max-width: 767px) and (orientation: portrait){
   .hero-img__container {
-    height: auto;
-    .hero-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      width: 100%;
-      padding: 0;
-      flex-direction: column;
-      .inspire-text {
-        order: 2;
-        width: 90%;
-        margin: auto;
-        font-size: 20px;
-        padding: 20px 0;
-      }
-      .hero-img {
-        order: 1;
-        position: relative;
-        width: 100%;
-        height: 200px;
-        left: 0;
-        margin: 0;
-      }
+    height: 30%;
+    height: 30vh;
+    .inspire-text {
+      font-size: 1.5rem;
     }
   }
   .secondary-header {
@@ -788,28 +739,10 @@ virtual-scroller {
 /***** XXS Devices *****/
 @media (max-width: 479px) and (orientation: portrait){
   .hero-img__container {
-    height: auto;
-    .hero-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      width: 100%;
-      padding: 0;
-      flex-direction: column;
-      .inspire-text {
-        order: 2;
-        width: 90%;
-        margin: auto;
-        font-size: 20px;
-        padding: 10px 0;
-      }
-      .hero-img {
-        order: 1;
-        position: relative;
-        width: 100%;
-        height: 150px;
-        left: 0;
-        margin: 0;
-      }
+    height: 30%;
+    height: 30vh;
+    .inspire-text {
+      font-size: 1.2rem;
     }
   }
   .secondary-header {

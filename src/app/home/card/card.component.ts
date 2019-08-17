@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit, ElementRef, NgZone, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, ElementRef, OnDestroy, HostBinding } from '@angular/core';
 import { take } from 'rxjs/internal/operators/take';
 import { AnimalService } from '../../services/animal.service';
 
