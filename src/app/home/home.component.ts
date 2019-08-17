@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   inspiredText: string = '';
   inspiredList: string[] = [
     '找個可以陪您走下一段旅程的朋友',
-    '讓他重新感受家的溫暖',
+    '讓牠重新感受家的溫暖',
     '領養代替購買，創造一份幸福'
   ];
   // Hero image src
