@@ -1,27 +1,24 @@
-# AnimalAdoption
+# Animal Adoption
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
+[Live Demo](https://chen1223.github.io/animal-adoption/)
 
-## Development server
+## About
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This is an Angular based website that uses the real animal adoption data provided by the Taiwanese government. The primary focus of this project is to build a fully functional website using the Test Driven Development (TDD) approach.
 
-## Code scaffolding
+## Tech Stacks
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+| Field               | Technology using                 |
+| :------------------ | :------------------------------- |
+| Frontend Technology | Angular 7                        |
+| Libraries           | ngx-virtual-scroller             |
 
-## Build
+## Website Features
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+* Hero image and text with animation to grab attention
+* Infinite virtual scroll
+* Real time data from the Taiwanese government
 
-## Running unit tests
+## Data Source
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Animal adoption data from [DATA.GOV.TW](https://data.gov.tw/dataset/85903)
