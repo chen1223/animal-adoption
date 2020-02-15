@@ -136,7 +136,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // Submit search
   applySearch(): void {
-    console.log('apply search');
     this.getAnimals(0, true);
     if (this.additionalFilter) {
       this.toggleFilter();
