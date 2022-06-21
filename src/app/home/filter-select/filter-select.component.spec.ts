@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { FilterSelectComponent } from './filter-select.component';
 import { By } from '@angular/platform-browser';
@@ -7,7 +7,7 @@ describe('FilterSelectComponent', () => {
   let component: FilterSelectComponent;
   let fixture: ComponentFixture<FilterSelectComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ FilterSelectComponent ],
       imports: [FontAwesomeModule]

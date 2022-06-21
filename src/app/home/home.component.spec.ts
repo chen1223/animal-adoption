@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick, waitForAsync } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
 import { HeroService } from '../services/hero.service';
@@ -17,7 +17,7 @@ describe('HomeComponent', () => {
   let animalService: AnimalService;
   let fb: FormBuilder;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, FontAwesomeModule],
       declarations: [ HomeComponent ],
