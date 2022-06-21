@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, AfterViewInit, ElementRef, OnDestroy, HostBinding } from '@angular/core';
+import { faHome, faMars, faPhoneAlt, faQuestion, faVenus } from '@fortawesome/free-solid-svg-icons';
 import { take } from 'rxjs/internal/operators/take';
 import { AnimalService } from '../../services/animal.service';
 
@@ -9,6 +10,12 @@ import { AnimalService } from '../../services/animal.service';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  faQuestion = faQuestion;
+  faMars = faMars;
+  faVenus = faVenus;
+  faHome = faHome;
+  faPhoneAlt = faPhoneAlt;
 
   // Card W : H portion
   cardPortion = 0.75;

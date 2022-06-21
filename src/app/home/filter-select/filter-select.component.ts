@@ -1,5 +1,6 @@
 import { Component, OnInit, forwardRef, Input, AfterViewInit, HostBinding, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl } from '@angular/forms';
+import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'filter-select',
@@ -15,6 +16,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl } from '@angular/f
   ]
 })
 export class FilterSelectComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+
+  faCaretDown = faCaretDown;
+  faCaretUp = faCaretUp;
 
   // Current selected value
   selectedValue: any = null;

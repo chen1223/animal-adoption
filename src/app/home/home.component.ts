@@ -6,6 +6,7 @@ import { FormBuilder, FormArray, FormControl, FormGroup } from '@angular/forms';
 import { AnimalService } from '../services/animal.service';
 import { map } from 'rxjs/operators';
 import { IPageInfo } from 'ngx-virtual-scroller';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -27,6 +28,8 @@ import { IPageInfo } from 'ngx-virtual-scroller';
   ]
 })
 export class HomeComponent implements OnInit, OnDestroy {
+
+  faSearch = faSearch;
 
   // Inspired text string
   inspiredText: string = '';

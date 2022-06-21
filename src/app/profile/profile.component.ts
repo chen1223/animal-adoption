@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { faAngleLeft, faHome } from '@fortawesome/free-solid-svg-icons';
 import { AnimalService } from '../services/animal.service';
 
 @Component({
@@ -7,6 +8,9 @@ import { AnimalService } from '../services/animal.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
+
+  faAngleLeft = faAngleLeft;
+  faHome = faHome;
 
   // Input data
   data;

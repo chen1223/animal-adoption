@@ -30,9 +30,9 @@
         <div class="detail-row --gender">
           <span class="detail-text --title">性別</span>
           <ng-container [ngSwitch]="data['gender']">
-            <fa-icon class="detail-text --detail --gender" *ngSwitchCase="'N'" [icon]="['fas', 'question']"></fa-icon>
-            <fa-icon class="detail-text --detail --gender" *ngSwitchCase="'M'" [icon]="['fas', 'mars']"></fa-icon>
-            <fa-icon class="detail-text --detail --gender" *ngSwitchCase="'F'" [icon]="['fas', 'venus']"></fa-icon>
+            <fa-icon class="detail-text --detail --gender" *ngSwitchCase="'N'" [icon]="faQuestion"></fa-icon>
+            <fa-icon class="detail-text --detail --gender" *ngSwitchCase="'M'" [icon]="faMars"></fa-icon>
+            <fa-icon class="detail-text --detail --gender" *ngSwitchCase="'F'" [icon]="faVenus"></fa-icon>
           </ng-container>
         </div>
         <!-- Size -->
@@ -77,12 +77,12 @@
           <span class="shelter">{{ data['animal_place'] }}</span>
           <!-- Address -->
           <div class="hidden-row --address">
-            <fa-icon class="hidden-icon"[icon]="['fas', 'home']"></fa-icon>
+            <fa-icon class="hidden-icon"[icon]="faHome"></fa-icon>
             <span class="hidden-detail">{{ data['shelter_address'] }}</span>
           </div>
           <!-- Telephone -->
           <div class="hidden-row --phone">
-            <fa-icon class="hidden-icon"[icon]="['fas', 'phone-alt']"></fa-icon>
+            <fa-icon class="hidden-icon"[icon]="faPhoneAlt"></fa-icon>
             <span class="hidden-detail">{{ data['shelter_tel'] }}</span>
           </div>
         </div>

@@ -8,7 +8,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 export class AnimalService {
 
   // Actual API link
-  apiLink: string = 'https://cors-anywhere.herokuapp.com/https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=QcbUEzN6E6DL';
+  apiLink: string = 'https://zueoy5tslhg6fq7hvgys32fsoy0mtvwx.lambda-url.ap-northeast-1.on.aws/';
+  publicApiLink: string = 'https://data.coa.gov.tw/Service/OpenData/TransService.aspx?UnitId=QcbUEzN6E6DL';
 
   // Body size mapping dictionary
   sizeDict = {
@@ -106,7 +107,11 @@ export class AnimalService {
     Object.keys(conditions).forEach(key => {
       params[key] = conditions[key];
     });
-    return this.http.get(`${this.apiLink}`, { params: params });
+    const body = {
+      govLink: this.publicApiLink,
+      params
+    };
+    return this.http.post(this.apiLink, body);
   }
 
   // Store given data to localStorage and sessionStorage
